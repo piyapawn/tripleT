@@ -1,0 +1,62 @@
+body{
+  background-color: black;
+}
+.container{
+  display: flex;
+  justify-content: center;
+}
+.signInSite{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.header{
+  padding: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+#message{
+  margin: 200px;
+  padding: 50px 100px 50px 100px;
+  border: solid 10px #00FFF6;
+  box-shadow: 0 0 5px 10px white inset;
+  border-radius: 100px;
+  text-align: center;
+}
+#message h2{
+  font-size: 50pt;
+  color: white;
+  text-shadow: 2.5px -2.5px #00FFF6;
+}
+.signOutButton{
+  padding: 10px;
+  background-color: #255352;
+  border: solid 5px #00FFF6;
+  border-radius: 100px;
+  font-size: 15pt;
+  font-weight: bold;
+  color: #00FFF6;
+  transition: 0.25s;
+}
+.signOutButton:hover{
+  background-color: #00FFF6;
+  border: solid 5px #255352;
+  color: #255352;
+}
+.signInButton, .playButton{
+  padding: 20px;
+  background-color: #255352;
+  border: solid 10px #00FFF6;
+  border-radius: 100px;
+  font-size: 30pt;
+  color: #00FFF6;
+  transition: 0.25s;
+}
+.signInButton:hover, .playButton:hover{
+  background-color: #00FFF6;
+  border: solid 10px #255352;
+  border-radius: 100px;
+  font-size: 30pt;
+  color: #255352;
+}
