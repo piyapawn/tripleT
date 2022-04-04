@@ -9,7 +9,7 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
 }
 .header{
   padding: 10px;
@@ -69,7 +69,7 @@ body{
   margin-left: 20%;
   margin-right: 20%;
 }
-#play{
+#play, #character{
   margin-top: 30px;
   font-weight: bolder;
   color: white;
@@ -80,7 +80,7 @@ body{
   border: solid 10px white;
   box-shadow: 0 0 5px 10px #00FFF6 inset;
 }
-#play:hover{
+#play, #character:hover{
   box-shadow: 0 0 30px 15px #00FFF6 inset;
 }
 .modetext{
@@ -102,7 +102,7 @@ body{
   display: flex;
   justify-content: space-around;
 }
-.menuButton{
+.menuButton, .BButton{
   font-weight: bolder;
   color: white;
   background-color: black;
@@ -112,6 +112,13 @@ body{
   border: solid 5px white;
   box-shadow: 0 0 5px 5px #00FFF6 inset;
 }
-.menuButton:hover{
+.menuButton:hover, .BButton:hover{
   box-shadow: 0 0 100px 100px #00fff79d inset;
+}
+
+#backButt{
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
 }

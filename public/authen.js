@@ -44,3 +44,34 @@ function setupUI(user){
         logoutItems.forEach(item => item.style.display = 'inline-block');
     }
 }
+
+
+//Select character
+const selectmode = document.getElementById('play');
+selectmode.addEventListener("click", selectchar);
+
+function selectchar(){
+    document.getElementById('head-mes').innerHTML = `Select Character`;
+    document.getElementById('forbackbutton').style.display= 'block';
+    choosecharUI()
+}
+
+function choosecharUI(){
+    document.querySelector(`.gamemode`).innerHTML = `
+    <button id="character" type="click" class="char1 logged-out">
+        <img src="image/golem.png" width="200px" height="200px">
+        <p class="modetext">Golem</p>
+      </button>
+      <button id="character" type="click" class="char2 logged-out">
+      <img src="image/orc.png" width="200px" height="200px">
+      <p class="modetext">Orc</p>
+      </button>
+      <button id="character" type="click" class="char3 logged-out">
+      <img src="image/reaper.png" width="200px" height="200px">
+      <p class="modetext">Reaper</p>
+      </button>
+    `;
+}
+
+
+
