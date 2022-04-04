@@ -9,7 +9,7 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
+  flex-direction: column;
 }
 .header{
   padding: 10px;
@@ -124,4 +124,144 @@ body{
   position: absolute;
   top: 0;
   left: 0;
+}
+
+/*--- HP ---*/
+#showhp{
+  width: 100%;
+  display: none;
+}
+#healthzone{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+#hp{
+  color: black;
+  font-weight: bolder;
+  margin-top: 20pt;
+  height: 30pt;
+  width: 15%;
+  background-color: #00FFF6;
+}
+.playerhp1{
+	transform: skew(-20deg);
+  border-radius: 10px;
+  box-shadow: 20px 0px 2px 0px white;
+}
+.playerhp2{
+	transform: skew(20deg);
+  border-radius: 10px;
+  box-shadow: -20px 0px 2px 0px white;
+}
+
+/*--- Play Board ---*/
+#board {
+  display: flex;
+  width: 100%;
+  height: 500pt;
+  justify-content: space-around;
+}
+
+/*---avatar---*/
+#avatar{
+	width: 0;
+	height: 0;
+  border-radius: 20%;
+	border-left: 100px solid transparent;
+	border-right: 100px solid transparent;
+	border-bottom: 200px solid rgb(0, 247, 255);
+}
+.name{
+  border-color: #002c2b;
+  color: black;
+  font-weight: bolder;
+  height: 25pt;
+  width: 150px;
+  border-radius: 12px;
+  margin-top: 10%;
+  margin-left: 10%;
+  background-color: azure;
+  box-shadow: 0px 0px 20px 5px #ffffff;
+}
+.score{
+  border-color: #002c2b;
+  color: black;
+  font-weight: bolder;
+  border-radius: 10px;
+  background-color: white;
+  height: 30pt;
+  width: 80pt;
+  margin-top: 100%;
+}
+#player1score{
+	transform: skew(-20deg);
+  box-shadow: 10px -5px 10px 0px #00FFF6;
+}
+#player2score{
+	transform: skew(20deg);
+  margin-left: 59%;
+  box-shadow: -10px -5px 10px 0px #00FFF6;
+}
+
+/*--- Board ---*/
+#bort {
+  margin-top: 100pt;
+  width: 30%;
+  height: 70%;
+  border-collapse: collapse;
+}
+
+.square {
+  height: 200px;
+  width: 200px;
+}
+
+#A .two {
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #ffffff;
+  border-bottom: 4px solid #ffffff;
+}
+
+#B .one {
+  border-top: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
+  border-right: 4px solid #ffffff;
+}
+
+#B .three {
+  border-top: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
+  border-left: 4px solid #ffffff;
+}
+
+#C .two {
+  border-top: 4px solid #ffffff;
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #ffffff;
+}
+
+/*--- Surrender ---*/
+.surrender{
+  position: fixed;
+  left: 5%;
+  bottom: 5%;
+  color: white;
+  text-align: center;
+  display: none;
+}
+.surButton{
+  font-weight: bolder;
+  color: red;
+  background-color: black;
+  height: 50pt;
+  width: 120pt;
+  border-radius: 10pt;
+  border: solid 2px white;
+  box-shadow: 0 0 5px 5px #ff0000 inset;
+  transition: 0.25s;
+}
+.surButton:hover{
+  box-shadow: 0 0 50px 100px #ff1717ec inset;
+  color: #002c2b;
 }
