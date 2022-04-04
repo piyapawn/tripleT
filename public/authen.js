@@ -52,7 +52,8 @@ selectmode.addEventListener("click", selectchar);
 
 function selectchar(){
     document.getElementById('head-mes').innerHTML = `Select Character`;
-    document.getElementById('forbackbutton').style.display= 'block';
+    document.getElementById('forbackbutton').style.display = 'inline-block';
+    console.log('Select character page');
     choosecharUI()
 }
 
@@ -73,5 +74,9 @@ function choosecharUI(){
     `;
 }
 
+const backButton = document.getElementById('backButt');
+backButton.addEventListener("click", backPage);
 
-
+function backPage(){
+    backButton.style.display = 'none';
+}
