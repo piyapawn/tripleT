@@ -59,10 +59,13 @@ function selectchar(){
 
 function choosecharUI(){
     document.querySelector(`.gamemode`).innerHTML = `
+    <a href="GameBoard.html">
     <button id="character" type="click" class="char1 logged-out">
+        <a href="GameBoard.html">
         <img src="image/golem.png" width="200px" height="200px">
         <p class="modetext">Golem</p>
       </button>
+      </a>
       <button id="character" type="click" class="char2 logged-out">
       <img src="image/orc.png" width="200px" height="200px">
       <p class="modetext">Orc</p>
@@ -73,63 +76,7 @@ function choosecharUI(){
       </button>
     `;
 
-    //Function - GameStart
-    const gamestart = document.getElementById('character');
-    gamestart.addEventListener("click", ready);
     
-    function ready(){
-        document.getElementById('message').style.display = 'none';
-        document.getElementById('forbackbutton').style.display = 'none';
-        document.getElementById('dont 1').style.display = 'none';
-        document.getElementById('dont 2').style.display = 'none';
-        document.getElementById('dont 3').style.display = 'none';
-        document.getElementById('signout-google').style.display = 'none';
-        document.getElementById('mode').style.display = 'none';
-        document.getElementById('showhp').style.display = 'inline-block';
-        document.getElementById('giveup').style.display = 'inline-block';
-        console.log('Ready to Start');
-        gameUI()
-    }
-
-    function gameUI(){
-        document.querySelector(`.play`).innerHTML = `
-        <div id="board" class="boxy">
-            <div>
-                <div id="avatar" class="p1avatar">
-                </div>
-                <button id="player1name" class="name" disabled>Player 1
-                </button>
-                <button id="player1score" class="score" disabled>Score
-                </button>
-            </div>
-            <table id="bort">
-                <tr id="A">
-                    <td class="one square corner"> </td>
-                    <td class="two square middle"> </td>
-                    <td class="three square corner"> </td>
-                </tr>
-                <tr id="B">
-                    <td class="one square middle"> </td>
-                    <td class="two square center"> </td>
-                    <td class="three square middle"> </td>
-                </tr>
-                <tr id="C">
-                    <td class="one square corner"> </td>
-                    <td class="two square middle"> </td>
-                    <td class="three square corner"> </td>
-                </tr>
-            </table>
-            <div>
-                <div id="avatar" class="p2avatar">
-                </div>
-                <button id="player2name" class="name" disabled>Player 2
-                </button>
-                <button id="player2score" class="score" disabled>Score
-                </button>
-            </div>
-        </div>
-        `;
-    }
 }
 
 const backButton = document.getElementById('backButt');

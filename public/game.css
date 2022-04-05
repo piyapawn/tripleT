@@ -1,0 +1,192 @@
+body{
+    background-color: black;
+  }
+  .header{
+    padding: 10px;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .signOutButton{
+    padding: 10px;
+    background-color: #255352;
+    border: solid 5px #00FFF6;
+    border-radius: 100px;
+    font-size: 15pt;
+    font-weight: bold;
+    color: #00FFF6;
+    transition: 0.25s;
+  }
+  .signOutButton:hover{
+    background-color: #00FFF6;
+    border: solid 5px #255352;
+    color: #255352;
+  }
+  
+  
+  /*--- MenuFooter ---*/
+  .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: right;
+    padding-right: 5%;
+    padding-bottom: 1%;
+  }
+  .menuButton{
+    font-weight: bolder;
+    color: white;
+    background-color: black;
+    height: 75pt;
+    width: 75pt;
+    border-radius: 50%;
+    border: solid 5px white;
+    box-shadow: 0 0 5px 5px #00FFF6 inset;
+    transition: 0.25s;
+  }
+  .menuButton:hover{
+    box-shadow: 0 0 100px 100px #00fff79d inset;
+    color: #002c2b;
+  }
+  
+  /*--- HP ---*/
+  #showhp{
+    width: 100%;
+    display: none;
+  }
+  #healthzone{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+  #hp{
+    color: black;
+    font-weight: bolder;
+    margin-top: 20pt;
+    height: 30pt;
+    width: 15%;
+    background-color: #00FFF6;
+  }
+  .playerhp1{
+      transform: skew(-20deg);
+    border-radius: 10px;
+    box-shadow: 20px 0px 2px 0px white;
+  }
+  .playerhp2{
+      transform: skew(20deg);
+    border-radius: 10px;
+    box-shadow: -20px 0px 2px 0px white;
+  }
+  
+  /*--- Play Board ---*/
+  #board {
+    display: flex;
+    width: 100%;
+    height: 500pt;
+    justify-content: space-around;
+  }
+  
+  /*---avatar---*/
+  #avatar{
+      width: 0;
+      height: 0;
+    border-radius: 20%;
+      border-left: 100px solid transparent;
+      border-right: 100px solid transparent;
+      border-bottom: 200px solid rgb(0, 247, 255);
+  }
+  .name{
+    border-color: #002c2b;
+    color: black;
+    font-weight: bolder;
+    height: 25pt;
+    width: 150px;
+    border-radius: 12px;
+    margin-top: 10%;
+    margin-left: 10%;
+    background-color: azure;
+    box-shadow: 0px 0px 20px 5px #ffffff;
+  }
+  .score{
+    border-color: #002c2b;
+    color: black;
+    font-weight: bolder;
+    border-radius: 10px;
+    background-color: white;
+    height: 30pt;
+    width: 80pt;
+    margin-top: 100%;
+  }
+  #player1score{
+      transform: skew(-20deg);
+    box-shadow: 10px -5px 10px 0px #00FFF6;
+  }
+  #player2score{
+      transform: skew(20deg);
+    margin-left: 59%;
+    box-shadow: -10px -5px 10px 0px #00FFF6;
+  }
+  
+  /*--- Board ---*/
+  #bort {
+    margin-top: 100pt;
+    width: 30%;
+    height: 70%;
+    border-collapse: collapse;
+  }
+  
+  .square {
+    height: 200px;
+    width: 200px;
+  }
+  
+  #A .two {
+    border-left: 1px solid #ffffff;
+    border-right: 1px solid #ffffff;
+    border-bottom: 4px solid #ffffff;
+  }
+  
+  #B .one {
+    border-top: 1px solid #ffffff;
+    border-bottom: 1px solid #ffffff;
+    border-right: 4px solid #ffffff;
+  }
+  
+  #B .three {
+    border-top: 1px solid #ffffff;
+    border-bottom: 1px solid #ffffff;
+    border-left: 4px solid #ffffff;
+  }
+  
+  #C .two {
+    border-top: 4px solid #ffffff;
+    border-left: 1px solid #ffffff;
+    border-right: 1px solid #ffffff;
+  }
+  
+  /*--- Surrender ---*/
+  .surrender{
+    position: fixed;
+    left: 5%;
+    bottom: 5%;
+    color: white;
+    text-align: center;
+  }
+  .surButton{
+    font-weight: bolder;
+    color: red;
+    background-color: black;
+    height: 50pt;
+    width: 120pt;
+    border-radius: 10pt;
+    border: solid 2px white;
+    box-shadow: 0 0 5px 5px #ff0000 inset;
+    transition: 0.25s;
+  }
+  .surButton:hover{
+    box-shadow: 0 0 50px 100px #ff1717ec inset;
+    color: #002c2b;
+  }
