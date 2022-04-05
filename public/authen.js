@@ -34,14 +34,14 @@ function setupUI(user){
     if(user){
         console.log('Main Menu Page')
         //location.replace("menuPage.html")
-        loginItems.forEach(item => item.style.display = 'inline-block');
-        logoutItems.forEach(item => item.style.display = 'none');
+        loginItems.forEach(item => item.style.display = 'none');
+        logoutItems.forEach(item => item.style.display = 'inline-block');
     }
     else{
         console.log('Sign In Page')
         //location.replace("index.html")
-        loginItems.forEach(item => item.style.display = 'none');
-        logoutItems.forEach(item => item.style.display = 'inline-block');
+        loginItems.forEach(item => item.style.display = 'inline-block');
+        logoutItems.forEach(item => item.style.display = 'none');
     }
 }
 
@@ -61,7 +61,6 @@ function choosecharUI(){
     document.querySelector(`.gamemode`).innerHTML = `
     <a href="GameBoard.html">
     <button id="character" type="click" class="char1 logged-out">
-        <a href="GameBoard.html">
         <img src="image/golem.png" width="200px" height="200px">
         <p class="modetext">Golem</p>
       </button>

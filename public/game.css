@@ -24,7 +24,7 @@ body{
 }
   
   
-/*--- MenuFooter ---*/
+/*--- Footer ---*/
 .footer {
   position: fixed;
   left: 0;
@@ -33,10 +33,46 @@ body{
   color: white;
   text-align: center;
   display: flex;
-  justify-content: right;
-  padding-right: 5%;
-  padding-bottom: 1%;
+  justify-content: space-between;
+  padding: 10px 50px 10px 50px;
 }
+/*--- Surrender Button ---*/
+.surrender{
+  color: white;
+  text-align: center;
+}
+.surButton{
+  font-weight: bolder;
+  color: red;
+  background-color: black;
+  height: 50pt;
+  width: 120pt;
+  border-radius: 10pt;
+  border: solid 2px white;
+  box-shadow: 0 0 5px 5px #ff0000 inset;
+  transition: 0.25s;
+}
+.surButton:hover{
+  box-shadow: 0 0 50px 100px #ff1717ec inset;
+  color: #ffffff;
+}
+/* Re-Match Button*/
+.reMatchButton{
+  font-weight: bolder;
+  color: #ffffff;
+  background-color: black;
+  height: 50pt;
+  width: 120pt;
+  border-radius: 10pt;
+  border: solid 2px white;
+  box-shadow: 0 0 5px 5px #ffffff inset;
+  transition: 0.25s;
+}
+.reMatchButton:hover{
+  box-shadow: 0 0 50px 100px #ffffff inset;
+  color: black;
+}
+/* Setting Button */
 .menuButton{
   font-weight: bolder;
   color: white;
@@ -53,7 +89,7 @@ body{
   color: #002c2b;
 }
   
-/*--- HP ---*/
+/*--- HP & Round ---*/
 #showhp{
   width: 100%;
 }
@@ -62,7 +98,10 @@ body{
   display: flex;
   justify-content: space-around;
 }
-#hp{
+.playerHP{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: black;
   font-weight: bolder;
   margin-top: 20pt;
@@ -70,15 +109,38 @@ body{
   width: 15%;
   background-color: #00FFF6;
 }
-.playerhp1{
+#playerHP1, #playerHP2{
+  margin: 0px 10px 0px 10px;
+}
+.hpText1{
   transform: skew(-20deg);
   border-radius: 10px;
   box-shadow: 20px 0px 2px 0px white;
 }
-.playerhp2{
+.hpText2{
   transform: skew(20deg);
   border-radius: 10px;
   box-shadow: -20px 0px 2px 0px white;
+}
+.gameStatus{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: flex-end;
+}
+.roundText{
+  margin-bottom: 0;
+}
+.roundNum{
+  margin: 0px 10px 0px 10px;
+  padding: 0;
+  display: flex;
+  align-items: flex-end;
+  font-size: 1.35rem;
+  font-weight: bold;
+}
+.roundText, .roundNum{
+  color: #ffffff;
 }
   
 /*--- Play Board ---*/
@@ -90,6 +152,11 @@ body{
 }
   
 /*---avatar---*/
+.playerShow{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 #avatar{
   width: 0;
   height: 0;
@@ -97,6 +164,9 @@ body{
   border-left: 100px solid transparent;
   border-right: 100px solid transparent;
   border-bottom: 200px solid rgb(0, 247, 255);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 .name{
   border-color: #002c2b;
@@ -197,26 +267,3 @@ body{
   border-right: 1px solid #ffffff;
 }
   
-/*--- Surrender ---*/
-.surrender{
-  position: fixed;
-  left: 5%;
-  bottom: 5%;
-  color: white;
-  text-align: center;
-}
-.surButton{
-  font-weight: bolder;
-  color: red;
-  background-color: black;
-  height: 50pt;
-  width: 120pt;
-  border-radius: 10pt;
-  border: solid 2px white;
-  box-shadow: 0 0 5px 5px #ff0000 inset;
-  transition: 0.25s;
-}
-.surButton:hover{
-  box-shadow: 0 0 50px 100px #ff1717ec inset;
-  color: #002c2b;
-}
