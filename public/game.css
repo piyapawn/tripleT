@@ -145,6 +145,8 @@ body{
         cursor: pointer;
         line-height: 100px;
         font-size: 60px;
+        text-align: center;
+        color: white;
     }
 
 
@@ -186,6 +188,11 @@ body{
     border-left: 1px solid #ffffff;
     border-right: 1px solid #ffffff;
   }
+
+.cell:hover{
+  cursor: pointer;
+  background-color: #00FFF6;
+}
   
   /*--- Surrender ---*/
   .surrender{
