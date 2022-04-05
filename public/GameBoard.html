@@ -18,14 +18,12 @@
   </head>
   <body class="game">
     <div class="header">
-
       <div id="showhp">
         <div id="healthzone">
           <button id="hp" class="playerhp1" disabled>HP</button>
           <button id="hp" class="playerhp2" disabled>HP</button>
         </div>
       </div>
-
     </div>
 
     <!-- Sign In -->
@@ -39,33 +37,33 @@
 
     <!-- ModeSelect -->
     <div id="board" class="boxy">
-        <div>
-            <div id="avatar" class="p1avatar">
-            </div>
-            <button id="player1name" class="name" disabled>Player 1
-            </button>
-            <button id="player1score" class="score" disabled>Score
-            </button>
+      <div>
+        <div id="avatar" class="p1avatar">
         </div>
-        <div class="game--container">
-            <div data-cell-index="0" id="cel11" class="cell"></div>
-            <div data-cell-index="1" id="cel12" class="cell"></div>
-            <div data-cell-index="2" id="cel13" class="cell"></div>
-            <div data-cell-index="3" id="cel21" class="cell"></div>
-            <div data-cell-index="4" id="cel22" class="cell"></div>
-            <div data-cell-index="5" id="cel23" class="cell"></div>
-            <div data-cell-index="6" id="cel31" class="cell"></div>
-            <div data-cell-index="7" id="cel32" class="cell"></div>
-            <div data-cell-index="8" id="cel33" class="cell"></div>
+        <button id="player1name" class="name" disabled>Player 1
+        </button>
+        <button id="player1score" class="score" disabled>Score
+        </button>
+      </div>
+      <div class="game--container">
+        <div id="0" class="cell" onclick="gamePlay(this.id)"></div>
+        <div id="1" class="cell" onclick="gamePlay(this.id)"></div>
+        <div id="2" class="cell" onclick="gamePlay(this.id)"></div>
+        <div id="3" class="cell" onclick="gamePlay(this.id)"></div>
+        <div id="4" class="cell" onclick="gamePlay(this.id)"></div>
+        <div id="5" class="cell" onclick="gamePlay(this.id)"></div>
+        <div id="6" class="cell" onclick="gamePlay(this.id)"></div>
+        <div id="7" class="cell" onclick="gamePlay(this.id)"></div>
+        <div id="8" class="cell" onclick="gamePlay(this.id)"></div>
+      </div>
+      <div>
+        <div id="avatar" class="p2avatar">
         </div>
-        <div>
-            <div id="avatar" class="p2avatar">
-            </div>
-            <button id="player2name" class="name" disabled>Player 2
-            </button>
-            <button id="player2score" class="score" disabled>Score
-            </button>
-        </div>
+        <button id="player2name" class="name" disabled>Player 2
+        </button>
+        <button id="player2score" class="score" disabled>Score
+        </button>
+      </div>
     </div>
 
     <!--CharacterSelect-->

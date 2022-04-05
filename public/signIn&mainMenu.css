@@ -263,5 +263,5 @@ body{
 }
 .surButton:hover{
   box-shadow: 0 0 50px 100px #ff1717ec inset;
-  color: #002c2b;
+  color: #ffffff !important;
 }
