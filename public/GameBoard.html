@@ -18,10 +18,6 @@
   </head>
   <body class="game">
     <div class="header">
-      
-      <button id="signout-google" type="click" class="signOutButton logged-in">
-          Sign Out
-      </button>
 
       <div id="showhp">
         <div id="healthzone">
@@ -51,23 +47,17 @@
             <button id="player1score" class="score" disabled>Score
             </button>
         </div>
-        <table id="bort">
-            <tr id="A">
-                <td class="one square corner"> </td>
-                <td class="two square middle"> </td>
-                <td class="three square corner"> </td>
-            </tr>
-            <tr id="B">
-                <td class="one square middle"> </td>
-                <td class="two square center"> </td>
-                <td class="three square middle"> </td>
-            </tr>
-            <tr id="C">
-                <td class="one square corner"> </td>
-                <td class="two square middle"> </td>
-                <td class="three square corner"> </td>
-            </tr>
-        </table>
+        <div class="game--container">
+            <div data-cell-index="0" class="cell"></div>
+            <div data-cell-index="1" class="cell"></div>
+            <div data-cell-index="2" class="cell"></div>
+            <div data-cell-index="3" class="cell"></div>
+            <div data-cell-index="4" class="cell"></div>
+            <div data-cell-index="5" class="cell"></div>
+            <div data-cell-index="6" class="cell"></div>
+            <div data-cell-index="7" class="cell"></div>
+            <div data-cell-index="8" class="cell"></div>
+        </div>
         <div>
             <div id="avatar" class="p2avatar">
             </div>

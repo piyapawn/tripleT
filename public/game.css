@@ -1,6 +1,6 @@
 /*ForGameBoard*/
 body{
-    background-color: black;
+    background-color: rgb(0, 0, 0);
   }
   .header{
     padding: 10px;
@@ -56,7 +56,6 @@ body{
   /*--- HP ---*/
   #showhp{
     width: 100%;
-    display: none;
   }
   #healthzone{
     width: 100%;
@@ -132,6 +131,26 @@ body{
   }
   
   /*--- Board ---*/
+  .game--container {
+      display: grid;
+      grid-template-columns: repeat(3, auto);
+      margin: 100pt;
+      color: #04c0b2;
+      height: 70%;
+    }
+    .cell {
+        width: 150pt;
+        box-shadow: 1pt 2pt 10pt 5pt #45ffff;
+        border: 2px solid white;
+        cursor: pointer;
+        line-height: 100px;
+        font-size: 60px;
+    }
+
+
+
+
+/*--- บอร์ดอันเก่า ---*/
   #bort {
     margin-top: 100pt;
     width: 30%;
