@@ -45,13 +45,27 @@ function setupUI(user){
     }
 }
 
+const backButton = document.getElementById('backButt');
+backButton.addEventListener("click", backPage);
 
-//Select character
-const selectmode = document.getElementById('play');
-selectmode.addEventListener("click", selectchar);
-
-function selectchar(){
-    window.open("selectHero.html", "_self");
-    console.log('Select character page');
+function backPage(){
+    console.log('I said BACK!');
+    window.open("index.html", "_self");
 }
 
+
+/*---สำหรับไปหน้าเล่นเกม Gameboard.html---*/
+
+const hero1choose = document.getElementById('character1');
+hero1choose.addEventListener('click', openGameboard);
+
+const hero2choose = document.getElementById('character2');
+hero2choose.addEventListener('click', openGameboard);
+
+const hero3choose = document.getElementById('character3');
+hero3choose.addEventListener('click', openGameboard);
+
+function openGameboard(){
+    window.open("GameBoard.html", "_self");
+    console.log('I clicked');
+}

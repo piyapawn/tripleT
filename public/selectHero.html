@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Triple T</title>
+    <title>Hero</title>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
@@ -27,8 +27,11 @@
     <div class="container">
         
       <div class="signInSite">
+        <div id="forbackbutton">
+          <button type="click" id="backButt" class="BButton logged-in">Back</button>
+        </div>
         <div id="message">
-          <h2 id="head-mes">Triple T</h2>
+          <h2 id="head-mes">Select Character</h2>
         </div>
         <button id="signin-google" type="click" class="signInButton logged-out">
           Sign In
@@ -44,28 +47,29 @@
       </div>
     </div>
 
-    <!-- ModeSelect -->
-    <div id="mode" class="gamemode">
-      
-      <button id="play" type="click" class="mode1 logged-in">
-        <a href="selectHero.html"></a>
-        <p class="modetext">Solo</p>
-        <p class="modetext">VS</p>
-        <p class="modetext">Bot</p>
-      </button>
-      <button id="play" type="click" class="mode2 logged-in">
-        <p class="modetext">Play</p>
-        <p class="modetext">With</p>
-        <p class="modetext">Other</p>
-      </button>
-      <button id="play" type="click" class="mode3 logged-in">
-        <p class="modetext">Play</p>
-        <p class="modetext">With</p>
-        <p class="modetext">Friend</p>
-      </button>
+    <!--CharacterSelect-->
+    <div id="hero" class="charchoose">
+
+        <button id="character1" type="click" class="char1 logged-in">
+            <img src="image/golem.png" width="200px" height="200px">
+            <p class="modetext">Golem</p>
+          </button>
+
+          <button id="character2" type="click" class="char2 logged-in">
+          <img src="image/orc.png" width="200px" height="200px">
+          <p class="modetext">Orc</p>
+          </button>
+          <button id="character3" type="click" class="char3 logged-in">
+          <img src="image/reaper.png" width="200px" height="200px">
+          <p class="modetext">Reaper</p>
+        </button>
     </div>
 
-    
+    <!--GameStart-->
+    <div class="play"></div>
+    <div class="surrender" id="giveup">
+      <button type="click" class="surButton logged-in">surrender</button>
+    </div>
     <script>
       // For Firebase JS SDK v7.20.0 and later, measurementId is optional
       const firebaseConfig = {
@@ -81,7 +85,7 @@
       // For Firebase JS SDK v7.20.0 and later, measurementId is optional
       firebase.initializeApp(firebaseConfig);
     </script>
-    <script type="text/javascript" src="authen.js"></script>
+    <script type="text/javascript" src="forchoosehero.js"></script>
   </body>
   <link rel="stylesheet" href="signIn&mainMenu.css">
 </html>
