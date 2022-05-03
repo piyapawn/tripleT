@@ -27,7 +27,7 @@
   </head>
   <body class="game">
     <div class="header">
-      <button class="hint logged-in">Hint</button>
+      <button id="hint" class="hint logged-in" type="click">Hint</button>
       <div class="flex-end" id="flex-end">
         <div id="user-profile-name" class="display-name userEmailName" style="color: white">Player : </div>
         <button id="signout-google" type="click" class="signOutButton">
@@ -59,12 +59,8 @@
 
     <!-- ModeSelect -->
     <div id="mode" class="gamemode">
-<<<<<<< Updated upstream
-      <button id="play" type="click" class="mode1 logged-in">
-=======
       
       <button id="mode1" type="click" class="play logged-in">
->>>>>>> Stashed changes
         <p class="modetext">Solo</p>
         <p class="modetext">VS</p>
         <p class="modetext">Bot</p>
@@ -83,6 +79,34 @@
     <div class="surrender" id="giveup">
       <button type="click" class="surButton logged-in">surrender</button>
     </div>
+
+    <!--- Modal --->
+    <!--- Hint Modal --->
+    <div id="HintModal" class="Hintmodal">
+      <!-- Hint Modal content -->
+      <div class="Hint-content">
+        <div class="Hintmodal-header">
+          <span class="closeHint">&times;</span>
+          <h2 class="headhint">HINT</h2>
+        </div>
+        <div class="Hintmodal-body">
+          <h3 class="hinthead">This is a tic tac toe game mixed with turn-based style.</h3>
+          <br>
+          <h3 class="hinthead">No. 1 : Choose your character.</h3>
+          <p class="hintdetail">Each character has a different stat.  choose the character you like.</p>
+          <br>
+          <h3 class="hinthead">No. 2 : Fight</h3>
+          <p class="hintdetail">When either side wins that round, it can damage the opponent's HP.</p>
+          <br>
+          <h3 class="hinthead">No. 3 : Win</h3>
+          <p class="hintdetail">The game is complete when either side has 0 HP remaining.</p>
+          <br>
+          <h3 class="hinthead">No. 4 : Draw</h3>
+          <p class="hintdetail">At the end of the 10th round, no one has 0 HP left. will be considered a tie and the game is over immediately.</p>
+        </div>
+      </div>
+    </div>
+
     <script>
       // For Firebase JS SDK v7.20.0 and later, measurementId is optional
       const firebaseConfig = {
@@ -102,6 +126,8 @@
     <script type="text/javascript" src="authen.js"></script>
     <script type="text/javascript" src="selectMode.js"></script>
     <script type="text/javascript" src="setupUI.js"></script>
+    <script type="text/javascript" src="hintmodal.js"></script>
   </body>
   <link rel="stylesheet" href="signIn&mainMenu.css">
+  <link rel="stylesheet" href="modal.css">
 </html>

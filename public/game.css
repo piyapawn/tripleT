@@ -42,11 +42,12 @@ body{
   text-align: center;
 }
 .surButton{
+  font-size: 1vw;
   font-weight: bolder;
   color: red;
   background-color: black;
-  height: 50pt;
-  width: 120pt;
+  height: 5vw;
+  width: 12vw;
   border-radius: 10pt;
   border: solid 2px white;
   box-shadow: 0 0 5px 5px #ff0000 inset;
@@ -127,14 +128,16 @@ body{
   margin: 0px 10px 0px 10px;
 }
 .hpText1{
+  font-size: 1vw;
   transform: skew(-20deg);
   border-radius: 10px;
-  box-shadow: 20px 0px 2px 0px white;
+  box-shadow: 0px 0px 20px 10px white;
 }
 .hpText2{
+  font-size: 1vw;
   transform: skew(20deg);
   border-radius: 10px;
-  box-shadow: -20px 0px 2px 0px white;
+  box-shadow: 0px 0px 20px 10px white;
 }
 .gameStatus{
   display: flex;
@@ -143,14 +146,15 @@ body{
   align-items: flex-end;
 }
 .roundText{
-  font-size: 5rem;
+  font-size: 2.5vw;
+  margin: 0.5vw 0px 0.5vw 0px;
 }
 .roundNum{
   margin: 0px 10px 0px 10px;
   padding: 0;
   display: flex;
   align-items: flex-end;
-  font-size: 5rem;
+  font-size: 2.5vw;
   font-weight: bold;
 }
 .roundText, .roundNum, .roomText, .roomNumText{
@@ -161,7 +165,6 @@ body{
 .board {
   display: flex;
   width: 100%;
-  height: 500pt;
   justify-content: space-around;
 }
   
@@ -170,14 +173,15 @@ body{
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 #avatar{
-  width: 0;
-  height: 0;
+  width: 0vw;
+  height: 0vw;
   border-radius: 20%;
-  border-left: 100px solid transparent;
-  border-right: 100px solid transparent;
-  border-bottom: 200px solid rgb(0, 247, 255);
+  border-left: 6vw solid transparent;
+  border-right: 6vw solid transparent;
+  border-bottom: 12vw solid rgb(0, 247, 255);
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -193,7 +197,7 @@ body{
   border-color: #002c2b;
   color: black;
   font-weight: bolder;
-  width: 100%;
+  width: 12vw;
   border-radius: 12px;
   background-color: azure;
   box-shadow: 0px 0px 20px 5px #ffffff;
@@ -202,12 +206,12 @@ body{
   margin: 10px 0 10px 0;
 }
 h4.charStat{
-  font-size: 2.5rem;
+  font-size: 2vw;
   color: darkblue;
   font-weight: bolder;
 }
 p.charStat{
-  font-size: 2rem;
+  font-size: 1.5vw;
   font-weight: bold;
 }
 .score{
@@ -239,11 +243,11 @@ p.charStat{
 }
 .turnText{
   color: white;
-  font-size: 3rem;
+  font-size: 2vw;
 }
 .nextRoundText{
   color: white;
-  font-size: 3rem;
+  font-size: 2vw;
   visibility: hidden;
 }
 .game-container {
@@ -271,8 +275,6 @@ p.charStat{
   cursor: pointer;
   background-color: #00FFF6;
 }
-
-
 
 /*--- บอร์ดอันเก่า ---*/
 #bort {

@@ -1,0 +1,91 @@
+/*--- Hint Modal ---*/
+.Hintmodal {
+    text-align: center;
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+  }
+
+/* Modal Content */
+.Hint-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    height: 300pt;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+  }
+  
+  /* The Close Button */
+  .closeHint {
+    color: white;
+    float: right;
+    font-size: 45px;
+    font-weight: bold;
+  }
+  
+  .closeHint:hover,.closeHint:focus {
+    color: rgb(255, 0, 0);
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .Hintmodal-header {
+    display: block;
+    padding: 2px 16px;
+    background-color: #000000;
+    color: white;
+    border: solid 2px white;
+    border-radius: 10pt;
+    box-shadow: 0 0 10px 5px #00FFF6 inset;
+    font-weight: bolder;
+  }
+  .headhint{
+      font-weight: bolder;
+  }
+  
+  .Hintmodal-body {
+    display: flex;
+    padding: 20pt 10%;
+    height: 500pt;
+    background-color: #000000;
+    color: white;
+    border: solid 2px white;
+    border-radius: 10pt;
+    flex-direction: column;
+    box-shadow: 0 0 10px 5px #00FFF6 inset;
+    overflow: auto;
+  }
+  /* Add Animation */
+  @-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+  }
+  
+  @keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+  }
+  
+  .hinthead{
+      color: #00FFF6;
+      font-weight: bolder;
+  }
+  .hintdetail{
+      font-size: 14pt;
+      font-weight: bolder;
+  }

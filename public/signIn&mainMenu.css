@@ -78,22 +78,14 @@ body{
   color: #255352;
 }
 
-<<<<<<< Updated upstream
 /*---ตัว Html อยู่ด้านล่าง Footer---*/
-=======
-/*---ตัว Html อยู่ด้านล่าง Footer---*/ /*---Select Character---*/
->>>>>>> Stashed changes
 .gamemode{
   display: flex;
   justify-content: space-around;
   margin-left: 20%;
   margin-right: 20%;
 }
-<<<<<<< Updated upstream
 #play, #character{
-=======
-.play, .char{
->>>>>>> Stashed changes
   margin-top: 30px;
   font-weight: bolder;
   color: white;
@@ -105,11 +97,7 @@ body{
   box-shadow: 0 0 5px 10px #00FFF6 inset;
   transition: 0.1s;
 }
-<<<<<<< Updated upstream
 #play:hover, #character:hover{
-=======
-.play:hover, .char:hover{
->>>>>>> Stashed changes
   box-shadow: 0 0 30px 15px #00FFF6 inset;
 }
 .modetext{
@@ -147,7 +135,6 @@ body{
   color: #002c2b;
 }
 
-<<<<<<< Updated upstream
 #forbackbutton{
   display: none /*!important*/;
   position: absolute;
@@ -155,8 +142,6 @@ body{
   left: 0;
 }
 
-=======
->>>>>>> Stashed changes
 /*--- HP ---*/
 #showhp{
   width: 100%;
