@@ -93,16 +93,30 @@ body{
 #showhp{
   width: 100%;
 }
+.roomTextPosition{
+  display: flex;
+  position: absolute;
+  padding: 10pt;
+  top: 0;
+  left: 0;
+}
+.roomNumText{
+  padding: 10px;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
 #healthzone{
   width: 100%;
   display: flex;
   justify-content: space-around;
 }
-.playerHP{
+.playerName{
   display: flex;
   justify-content: center;
   align-items: center;
   color: black;
+  font-size: large;
   font-weight: bolder;
   margin-top: 20pt;
   height: 30pt;
@@ -129,22 +143,22 @@ body{
   align-items: flex-end;
 }
 .roundText{
-  margin-bottom: 0;
+  font-size: 5rem;
 }
 .roundNum{
   margin: 0px 10px 0px 10px;
   padding: 0;
   display: flex;
   align-items: flex-end;
-  font-size: 1.35rem;
+  font-size: 5rem;
   font-weight: bold;
 }
-.roundText, .roundNum{
+.roundText, .roundNum, .roomText, .roomNumText{
   color: #ffffff;
 }
   
 /*--- Play Board ---*/
-#board {
+.board {
   display: flex;
   width: 100%;
   height: 500pt;
@@ -168,17 +182,33 @@ body{
   justify-content: center;
   align-items: flex-start;
 }
-.name{
+.stat{
+  padding: 5pt;
+  margin: 10pt 0pt 10pt 0pt;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   border-color: #002c2b;
   color: black;
   font-weight: bolder;
-  height: 25pt;
-  width: 150px;
+  width: 100%;
   border-radius: 12px;
-  margin-top: 10%;
-  margin-left: 10%;
   background-color: azure;
   box-shadow: 0px 0px 20px 5px #ffffff;
+}
+.charStat{
+  margin: 10px 0 10px 0;
+}
+h4.charStat{
+  font-size: 2.5rem;
+  color: darkblue;
+  font-weight: bolder;
+}
+p.charStat{
+  font-size: 2rem;
+  font-weight: bold;
 }
 .score{
   border-color: #002c2b;
@@ -201,16 +231,30 @@ body{
 }
   
   /*--- Board ---*/
-.game--container {
+.textHead{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.turnText{
+  color: white;
+  font-size: 3rem;
+}
+.nextRoundText{
+  color: white;
+  font-size: 3rem;
+  visibility: hidden;
+}
+.game-container {
   display: grid;
   grid-template-columns: repeat(3, auto);
-  margin: 100pt;
   color: #04c0b2;
   /*height: 70%;*/
 }
 .cell {
-  min-width: 130pt;
-  height: 130pt;
+  min-width: 10vw;
+  height: 10vw;
   box-shadow: 1pt 2pt 10pt 5pt #45ffff;
   border: 2px solid white;
   cursor: pointer;

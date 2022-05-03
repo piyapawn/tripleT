@@ -2,8 +2,12 @@
 // jacob@jakesweb.me
 // tic-tac-toe
 
+// ref จาก GameInfo, Room
+const refUserInfo = firebase.database().ref('UserInfo')
+
 // variable declartion
 var playRound = 1;
+var playTurn = 'X';
 var playerSelect = "X";
 var computerSelect = "O";
 var computerPosition = 0;
@@ -13,29 +17,115 @@ var computerArea = [];
 var winRoundCheck = false;
 var winMatchCheck = false;
 
-// Turn Base Variables
-// Player Stat
-var playerHP = 5;
-var playerDamage = 3;
-// Bot Stat
-var botHP = 5;
-var botDamage = 2;
+refUserInfo.on('value', snapshot => {
+  showStat(snapshot);
+})
 
-// start play, select the player choice/computer
-// choice, switch from select frame to game frame
-//function gameStart(player) {
-//  console.log(computerArea);
-//  $("#selector").hide();
-//  $("#game").show();
-//
-//  if (player === "o") {
-//    computerSelect = "x";
-//  } else {
-//    computerSelect = "o";
-//  }
-//
-//  playerSelect = player;
-//}
+/* Turn Base Variables */
+// Player Stat
+let playerName;
+let playerCharType;
+let playerHP;
+let playerDamage;
+let playerImgSource
+let playerWin;
+
+// Bot Stat
+let botCharType;
+let botHP;
+let botDamage;
+let botImgSource
+let botWin;
+
+function showStat(snapshot){
+  const currentUser = firebase.auth().currentUser;
+  const currentEmail = currentUser.email;
+  const currentUid = currentUser.uid;
+  let adIndex = currentEmail.indexOf("@");
+  let currentPlayer = currentEmail.slice(0, adIndex);
+  let current_User = currentPlayer.replace('.', '_');
+
+  const userInfos = snapshot.child(current_User).child('user-stat').val();
+  if(snapshot.child(current_User).child('user-stat').exists()){
+    Object.keys(userInfos).forEach(key => {
+      switch(key){
+        case 'name':
+          playerName = userInfos[key];
+          break
+        case 'char-type':
+          playerCharType = userInfos[key];
+          break
+        case 'hp':
+          playerHP = userInfos[key];
+          break
+        case 'damage':
+          playerDamage = userInfos[key];
+          break
+        case 'imgSource':
+          playerImgSource = userInfos[key];
+          break
+        case 'win':
+          playerWin = userInfos[key];
+          break
+      }
+    })
+  }
+
+  const botInfos = snapshot.child(current_User).child('bot-stat').val();
+  if(snapshot.child(current_User).child('bot-stat').exists()){
+    Object.keys(botInfos).forEach(key => {
+      switch(key){
+        case 'char-type':
+          botCharType = botInfos[key];
+          break
+        case 'hp':
+          botHP = botInfos[key];
+          break
+        case 'damage':
+          botDamage = botInfos[key];
+          break
+        case 'imgSource':
+          botImgSource = botInfos[key];
+          break
+        case 'win':
+          botWin = botInfos[key];
+          break
+      }
+    })
+  }
+  
+  console.log('Player X : '+playerName);
+  console.log(playerCharType);
+  console.log('HP : '+playerHP);
+  console.log('Damage : '+playerDamage);
+  console.log("ImgSource: "+ playerImgSource);
+
+  console.log(botCharType);
+  console.log('HP : '+botHP);
+  console.log('Damage : '+botDamage);
+  console.log("ImgSource: "+ botImgSource);
+
+  showInfo();
+  gameMatchWin();
+}
+
+function showInfo(){
+  // Show Player Stat
+  $('#player1name').html('Player X : '+playerName);
+  $('#charXName').html(playerCharType);
+  $('#charXHP').html('HP : '+playerHP);
+  $('#charXDamage').html('Damage : '+playerDamage);
+  $('#imageX').attr("src", playerImgSource);
+
+  // Show Bot Stat
+  $('#charOName').html(botCharType);
+  $('#charOHP').html('HP : '+botHP);
+  $('#charODamage').html('Damage : '+botDamage);
+  $('#imageO').attr("src", botImgSource);
+}
+
+let intervalID;
+let timeCount;
 
 // player gameplay function
 function gamePlay(position) {
@@ -44,24 +134,28 @@ function gamePlay(position) {
   //console.log('Play Area: '+playArea)
   //console.log('Player Area: '+playerArea)
   if(!winMatchCheck){
-    if (!playArea.includes(position)) {
-      alert("Already played area");
-    }
-    else {
-      document.getElementById(position).innerHTML = playerSelect;
-      //console.log('Player Position: '+position);
-      playerArea.push(position);
-      //console.log('Player Area Push: '+playerArea)
-      playerArea.sort();
-      //console.log('Player Area Sort: '+playerArea)
-      playArea.splice(playArea.indexOf(position), 1);
-      //console.log('Play Area Splice: '+playArea)
-      if (checkWin(playerArea) === 2) {
-        gameRoundWin("player");
-      } else if (checkWin(playerArea) === 1) {
-        gameRoundWin("draw");
-      } else {
-        computerPlay();
+    if(playTurn == 'X'){
+      if (!playArea.includes(position)) {
+        alert("Already played area");
+      }
+      else {
+        document.getElementById(position).innerHTML = playerSelect;
+        //console.log('Player Position: '+position);
+        playerArea.push(position);
+        //console.log('Player Area Push: '+playerArea)
+        playerArea.sort();
+        //console.log('Player Area Sort: '+playerArea)
+        playArea.splice(playArea.indexOf(position), 1);
+        //console.log('Play Area Splice: '+playArea)
+        updateTurn('O');
+        if (checkWin(playerArea) === 2) {
+          gameRoundWin("player");
+        } else if (checkWin(playerArea) === 1) {
+          gameRoundWin("draw");
+        } else {
+          timeCount = 2;
+          intervalID = setInterval(delayBot, 1000);
+        }
       }
     }
   }
@@ -69,19 +163,36 @@ function gamePlay(position) {
 
 // computer gameplay function
 function computerPlay() {
-  var randPlay = parseInt(Math.random() * (playArea.length - 1));
-  computerPosition = playArea[randPlay];
-  //console.log('Computer Position: '+computerPosition);
-  document.getElementById(computerPosition).innerHTML = computerSelect;
-  computerArea.push(computerPosition);
-  computerArea.sort();
-  playArea.splice(playArea.indexOf(computerPosition), 1);
-  if (checkWin(computerArea) === 2) {
-    gameRoundWin("computer");
-  } else if (checkWin(computerArea) === 1) {
-    gameRoundWin("draw");
+  if(playTurn == 'O'){
+    var randPlay = parseInt(Math.random() * (playArea.length - 1));
+    computerPosition = playArea[randPlay];
+    //console.log('Computer Position: '+computerPosition);
+    document.getElementById(computerPosition).innerHTML = computerSelect;
+    computerArea.push(computerPosition);
+    computerArea.sort();
+    playArea.splice(playArea.indexOf(computerPosition), 1);
+    if (checkWin(computerArea) === 2) {
+      gameRoundWin("computer");
+    } else if (checkWin(computerArea) === 1) {
+      gameRoundWin("draw");
+    }
+    computerPosition = 0;
+    updateTurn('X');
   }
-  computerPosition = 0;
+}
+
+// delay ให้บอทคิด
+function delayBot(){
+  if(timeCount >= 0){
+    document.getElementById("timeCountdownText").style.visibility = 'visible';
+    $("#timeCountdownText").html('Bot thinks . . . '+timeCount+' s');
+    timeCount--;
+  }
+  else{
+    document.getElementById("timeCountdownText").style.visibility = 'hidden';
+    computerPlay();
+    clearInterval(intervalID);
+  }
 }
 
 // check for win conditions
@@ -163,95 +274,166 @@ function checkWin(textArray) {
 // parameter: winners name
 function gameRoundWin(winner) {
   if (winner === "player") {
-    alert("You are the winner!");
+    attackEnemies(winner, playerDamage);
   }
-  else if (winner === "draw") { 
-    alert("The game is a draw");
+  else if (winner === "computer") {
+    attackEnemies(winner, botDamage);
   }
   else {
-    alert("The computer is the winner!");
+    timeCountdownRound = 3;
+    intervalIDRound = setInterval(gameRoundReset, 1000, winner)
+  }
+}
+
+function updateTurn(turn){
+  playTurn = turn;
+  $('#turnText').html('Turn : '+playTurn);
+}
+
+function updateRound(){
+  playRound++;
+  $('#round').html(playRound);
+}
+
+let timeCountdownRound;
+let intervalIDRound;
+
+function attackEnemies(winner, damage){
+  const currentUser = firebase.auth().currentUser;
+  const currentEmail = currentUser.email;
+  const currentUid = currentUser.uid;
+  let adIndex = currentEmail.indexOf("@");
+  let currentPlayer = currentEmail.slice(0, adIndex);
+  let current_User = currentPlayer.replace('.', '_');
+
+  console.log('Attack Function');
+
+  if(winner === "player"){
+    console.log('Winner : Player');
+    if(botHP-damage <= 0){
+      botHP = 0;
+      //timeCountdownEndGame = 5;
+      //intervalIDgameMatch = setInterval(endMatchGame, 1000, winner);
+    }
+    else{
+      botHP = botHP - damage;
+      updateRound();
+      console.log('Player X attacks Player O');
+      timeCountdownRound = 3;
+      intervalIDRound = setInterval(gameRoundReset, 1000, winner)
+    }
+    refUserInfo.child(current_User).child('bot-stat').update({
+        ['hp']: botHP,
+    })
+  }
+  else if(winner === "computer"){
+    if(playerHP-damage <= 0){
+      playerHP = 0;
+    }
+    else{
+      playerHP = playerHP - damage;
+      updateRound();
+      timeCountdownRound = 3;
+      intervalIDRound = setInterval(gameRoundReset, 1000, winner)
+    }
+    refUserInfo.child(current_User).child('user-stat').update({
+        ['hp']: playerHP,
+    })
   }
   
-  attackEnemies();
+  //console.log(checkWin(playerArea));
+  //console.log(checkWin(computerArea));
+  //console.log('Player HP: '+playerHP);
+  //console.log('Bot HP: '+botHP);
 }
 
-function attackEnemies(){
-    if(checkWin(playerArea) === 2){
-        botHP -= playerDamage;
-        document.getElementById('playerHP2').innerHTML = botHP;
-    }
-    else if(checkWin(computerArea) === 2){
-        playerHP -= botDamage;
-        document.getElementById('playerHP1').innerHTML = playerHP;
-    }
-
-    //console.log(checkWin(playerArea));
-    //console.log(checkWin(computerArea));
-    //console.log('Player HP: '+playerHP);
-    //console.log('Bot HP: '+botHP);
-    gameRoundReset();
-    gameMatchWin();
-}
-
-function gameMatchWin(){
-    if(playerHP <= 0 && playRound <= 10){
-        alert('Bot Win!');
-        document.getElementById('playerHP1').innerHTML = 0;
-        document.getElementById('roundText').innerHTML = 'Winner : Player 2!';
-        document.getElementById('round').innerHTML = '';
-        document.querySelector('#reMatch').disabled = false;
-        winMatchCheck = true;
-    }
-    else if(botHP <= 0 && playRound <= 10){
-        alert('Player Win!');
-        document.getElementById('playerHP2').innerHTML = 0;
-        document.getElementById('roundText').innerHTML = 'Winner : Player 1!';
-        document.getElementById('round').innerHTML = '';
-        document.querySelector('#reMatch').disabled = false;
-        winMatchCheck = true;
-    }
-    else if(playRound == 10){
-        document.getElementById('roundText').innerHTML = 'GAME DRAW';
-        document.getElementById('round').innerHTML = '';
-        document.querySelector('#reMatch').disabled = false;
-        winMatchCheck = true;
-    }
-}
 // reset variables to default, reset to game
 // selection frame
-function gameRoundReset(){
-    if(winMatchCheck){
-        playRound = 1;
+function gameRoundReset(winner){
+  if(timeCountdownRound >= 0){
+    document.getElementById("timeCountdownText").style.visibility = 'visible';
+    $('#timeCountdownText').html('Next Round start in . . . '+timeCountdownRound+' s');
+    
+    if(winner == 'draw'){
+      $('#turnText').html('Gamw Draw');
     }
-    else if(!winMatchCheck){
-        playRound++;
+    else{
+      $('#turnText').html('Winner : '+winner);
     }
+    timeCountdownRound--;
+  }
+  else{
+    document.getElementById("timeCountdownText").style.visibility = 'hidden';
     console.log('Win?: '+winMatchCheck)
-    playerSelect = "X";
-    computerSelect = "O";
     computerPosition = 0;
     playArea = [0, 1, 2, 3, 4, 5, 6, 7, 8];
     
+    updateTurn('X');
     playerArea = [];
     computerArea = [];
     winRoundCheck = false;
-    
-    document.getElementById('round').innerHTML = playRound;
-
+  
     //Reset Table
     for(i = 0; i < 9; i++){
       document.getElementById(i).innerHTML = '';
     }
     
     console.log('Game Reset');
+
+    clearInterval(intervalIDRound);
+  }
+}
+
+let intervalIDgameMatch;
+let timeCountdownEndGame;
+
+function gameMatchWin(){
+    if(playerHP == 0 && playRound <= 10){
+        timeCountdownEndGame = 5;
+        intervalIDgameMatch = setInterval(endMatchGame, 1000, 'bot');
+        winMatchCheck = true;
+    }
+    else if(botHP == 0 && playRound <= 10){
+        timeCountdownEndGame = 5;
+        intervalIDgameMatch = setInterval(endMatchGame, 1000, 'player');
+        winMatchCheck = true;
+    }
+    else if(playRound == 10){
+        timeCountdownEndGame = 5;
+        intervalIDgameMatch = setInterval(endMatchGame, 1000, 'draw');
+        winMatchCheck = true;
+    }
+}
+
+function endMatchGame(theWinner){
+    const currentUser = firebase.auth().currentUser;
+    const currentEmail = currentUser.email;
+    const currentUid = currentUser.uid;
+    let adIndex = currentEmail.indexOf("@");
+    let currentPlayer = currentEmail.slice(0, adIndex);
+    let current_User = currentPlayer.replace('.', '_');
+
+    if(timeCountdownEndGame >= 0){
+        document.getElementById("timeCountdownText").style.visibility = 'visible';
+        if(theWinner == 'draw'){
+            $("#turnText").html('GAME DRAW');
+        }
+        else{
+            $("#turnText").html('The Winner is '+theWinner);
+        }
+        $("#timeCountdownText").html('Back to Homepage . . . '+timeCountdownEndGame+' s');
+        timeCountdownEndGame--;
+    }
+    else{
+        refUserInfo.child(current_User).child('user-stat').remove();
+        refUserInfo.child(current_User).child('bot-stat').remove();
+        window.location.replace('index.html');
+        clearInterval(intervalIDgameMatch);
+        return
+    }
 }
 
 function gameMatchReset(){
-    playerHP = 5;
-    playerDamage = 3;
-    botHP = 5;
-    botDamage = 2;
-    
     document.getElementById('playerHP1').innerHTML = playerHP;
     document.getElementById('playerHP2').innerHTML = botHP
     document.getElementById('roundText').innerHTML = 'Round : ';
@@ -263,6 +445,16 @@ function gameMatchReset(){
 }
 
 function surrenderGame(){
+    const currentUser = firebase.auth().currentUser;
+    const currentEmail = currentUser.email;
+    const currentUid = currentUser.uid;
+    let adIndex = currentEmail.indexOf("@");
+    let currentPlayer = currentEmail.slice(0, adIndex);
+    let current_User = currentPlayer.replace('.', '_');
     alert('Bot Win!');
+
+    refUserInfo.child(current_User).child('user-stat').remove();
+    refUserInfo.child(current_User).child('bot-stat').remove();
+
     window.location.replace('index.html');
 }
