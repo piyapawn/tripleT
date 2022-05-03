@@ -14,10 +14,26 @@ body{
 .header{
   padding: 10px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
+}
+.flex-end{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.userEmailName{
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 0px 10px 0px 10px;
+  padding: 10px 15px 10px 15px;
+  border: 2px solid #00FFF6;
+  box-shadow: 5px 10px 8px #255352;
+  border-radius: 50px 20px;
 }
 #message{
-  margin: 10% auto 10% auto;
+  margin: 0% auto 10% auto;
   padding: 50px 100px 50px 100px;
   border: solid 10px #00FFF6;
   box-shadow: 0 0 5px 10px white inset;
@@ -29,7 +45,7 @@ body{
   color: white;
   text-shadow: 2.5px -2.5px #00FFF6;
 }
-.signOutButton{
+.signOutButton, .hint{
   padding: 10px;
   background-color: #255352;
   border: solid 5px #00FFF6;
@@ -39,7 +55,7 @@ body{
   color: #00FFF6;
   transition: 0.25s;
 }
-.signOutButton:hover{
+.signOutButton:hover, .hint:hover{
   background-color: #00FFF6;
   border: solid 5px #255352;
   color: #255352;
