@@ -21,7 +21,6 @@ signout.addEventListener('click', (user) => {
     console.log('Logout complete.');
     //location.replace("index.html")
 });
-<<<<<<< Updated upstream
 
 firebase.auth().onAuthStateChanged((user) => {
     console.log('User: ', user);
@@ -85,5 +84,3 @@ backButton.addEventListener("click", backPage);
 function backPage(){
     backButton.style.display = 'none';
 }
-=======
->>>>>>> Stashed changes

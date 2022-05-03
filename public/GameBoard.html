@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Triple T VS Bot</title>
+    <title>Triple T</title>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
@@ -53,7 +53,7 @@
         <div id="avatar" class="p1avatar">
           <img src="/public/image/golem.png" alt="" class="imagePlayer1">
         </div>
-        <div id="player1name" class="name" disabled>Player X : </div>
+        <button id="player1name" class="name" disabled>Player 1</button>
         <!-- <button id="player1score" class="score" disabled>Score</button> -->
       </div>
       <div class="game--container">
@@ -71,7 +71,7 @@
         <div id="avatar" class="p2avatar">
           <img class="imagePlayer2" src="/public/image/reaper.png" alt="">
         </div>
-        <div id="player2name" class="name" disabled>Player Y : </div>
+        <button id="player2name" class="name" disabled>Player 2</button>
         <!-- <button id="player2score" class="score" disabled>Score</button> -->
       </div>
     </div>
@@ -96,8 +96,7 @@
       // For Firebase JS SDK v7.20.0 and later, measurementId is optional
       firebase.initializeApp(firebaseConfig);
     </script>
-    <script type="text/javascript" src="vsBotMode.js"></script>
-    <script type="text/javascript" src="setupUI.js"></script>
+    <script type="text/javascript" src="vsbotmode.js"></script>
   </body>
   <link rel="stylesheet" href="game.css">
 </html>
