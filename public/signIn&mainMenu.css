@@ -62,14 +62,14 @@ body{
   color: #255352;
 }
 
-/*---ตัว Html อยู่ด้านล่าง Footer---*/
+/*---ตัว Html อยู่ด้านล่าง Footer---*/ /*---Select Character---*/
 .gamemode{
   display: flex;
   justify-content: space-around;
   margin-left: 20%;
   margin-right: 20%;
 }
-#play, #character{
+.play, .char{
   margin-top: 30px;
   font-weight: bolder;
   color: white;
@@ -81,7 +81,7 @@ body{
   box-shadow: 0 0 5px 10px #00FFF6 inset;
   transition: 0.1s;
 }
-#play:hover, #character:hover{
+.play:hover, .char:hover{
   box-shadow: 0 0 30px 15px #00FFF6 inset;
 }
 .modetext{
@@ -117,13 +117,6 @@ body{
 .menuButton:hover, .BButton:hover{
   box-shadow: 0 0 100px 100px #00fff79d inset;
   color: #002c2b;
-}
-
-#forbackbutton{
-  display: none /*!important*/;
-  position: absolute;
-  top: 0;
-  left: 0;
 }
 
 /*--- HP ---*/
