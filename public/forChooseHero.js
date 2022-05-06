@@ -305,21 +305,22 @@ function checkRoomCode(){
     roomCodeAssign = String(document.getElementById('roomCode').value);
     console.log('Room Code: '+roomCodeAssign);
     
-    refVSFriendRoom.on('value', snapshot => {
+    refVSFriendRoom.once('value', snapshot => {
         console.log('Check Room Code Exists: '+snapshot.hasChild('room-'+roomCodeAssign))
         checkRoomCodeExists = snapshot.hasChild('room-'+roomCodeAssign);
+
         checkPlayerOstatExists = snapshot.child('room-'+roomCodeAssign).hasChild('playerO-stat');
+        console.log('Player O Stat Exist?: '+checkPlayerOstatExists);
+        console.log('Player O Stat not Exist?: '+!checkPlayerOstatExists);
+
         if(checkRoomCodeExists){
             if(golem){
-                console.log('Golem: '+golem);
                 friendUpdatePlayerO('Golem', 13, 3, 'image/golem.png', roomCodeAssign);
             }
             else if(orc){
-                console.log('Golem: '+orc);
                 friendUpdatePlayerO('Orc',8 ,6, 'image/orc.png', roomCodeAssign);
             }
             else if(reaper){
-                console.log('Golem: '+reaper);
                 friendUpdatePlayerO('Reaper',5 ,8, 'image/reaper.png', roomCodeAssign);
             }
         }
@@ -349,7 +350,8 @@ function friendUpdatePlayerO(charType, hp, damage, imgSource, roomCodeAssign){
     let adIndex = currentEmail.indexOf("@");
     let currentPlayer = currentEmail.slice(0, adIndex);
 
-    if(!checkPlayerOstatExists){
+    if(checkPlayerOstatExists == false){
+        console.log('Join Room');
         refVSFriendRoom.child('room-'+roomCodeAssign).child('playerO-stat').update({
             ['name']: currentPlayer,
             ['char-type']: charType,

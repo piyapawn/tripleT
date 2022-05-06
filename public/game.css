@@ -383,7 +383,98 @@ p.charStat{
   justify-content: space-between;
   display: none;
 }
+@media screen and (max-width: 1400px) {
+  .imagePlayer1{
+    width: 11vw;
+  }
+  .imagePlayer2{
+    width: 11vw;
+  }
+  .playerName{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-size: initial;
+    font-weight: bolder;
+    height: 30pt;
+    width: 20%;
+  }
+  .charStat{
+    margin: 10px 0 10px 0;
+  }
+  h4.charStat{
+    font-size: 2vw;
+    color: darkblue;
+    font-weight: bolder;
+  }
+  p.charStat{
+    font-size: 1.5vw;
+    font-weight: bold;
+  }
+  #playerfull {
+    display: none;
+  }
+  .player{
+    display: block;
+    display: flex;
+    z-index: 1;
+  }
+  .game-container{
+    height: 0vw;
+    width: 50%;
+    margin: auto;
+  }
+  .board {
+    flex-direction: column;
+  }
+  .cell{
+    height: 15vw;
+  }
+  .surButton{
+    font-size: 2vw;
+    height: 8vw;
+    width: 15vw;
+    border-radius: 10pt;
+    border: solid 2px white;
+  }
+}
 @media screen and (max-width: 900px) {
+  #avatar{
+    border-left: 8vw solid transparent;
+    border-right: 8vw solid transparent;
+    border-bottom: 16vw solid rgb(0, 247, 255);
+  }
+  .imagePlayer1{
+    width: 15vw;
+  }
+  .imagePlayer2{
+    width: 15vw;
+  }
+  .stat{
+    padding: 5pt;
+    margin: 10pt 0pt 10pt 0pt;
+    width: 15vw;
+  }
+  h4.charStat{
+    font-size: 2.5vw;
+    color: darkblue;
+    font-weight: bolder;
+  }
+  p.charStat{
+    font-size: 1.75vw;
+    font-weight: bold;
+  }
+  .playerName{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-size: initial;
+    font-weight: bolder;
+    height: 30pt;
+    width: 30%;
+  }
   #playerfull {
     display: none;
   }
@@ -391,17 +482,82 @@ p.charStat{
     padding-top: 25%;
     display: block;
     display: flex;
+    z-index: 1;
   }
   .game-container{
-    height: 100pt;
-    width: 60%;
+    height: 0vw;
+    width: 50%;
     margin: auto;
   }
   .board {
     flex-direction: column;
   }
   .cell{
-    height: 20vw;
+    height: 15vw;
+  }
+  .surButton{
+    font-size: 3vw;
+    height: 10vw;
+    width: 20vw;
+    border-radius: 10pt;
+    border: solid 2px white;
+  }
+}
+@media screen and (max-width: 600px) {
+  #avatar{
+    border-left: 10vw solid transparent;
+    border-right: 10vw solid transparent;
+    border-bottom: 20vw solid rgb(0, 247, 255);
+  }
+  .imagePlayer1{
+    width: 17.5vw;
+  }
+  .imagePlayer2{
+    width: 17.5vw;
+  }
+  .stat{
+    padding: 5pt;
+    margin: 10pt 0pt 10pt 0pt;
+    width: 18vw;
+  }
+  h4.charStat{
+    font-size: 2.75vw;
+    color: darkblue;
+    font-weight: bolder;
+  }
+  p.charStat{
+    font-size: 2vw;
+    font-weight: bold;
+  }
+  .playerName{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-size: initial;
+    font-weight: bolder;
+    height: 50pt;
+    width: 30%;
+  }
+  #playerfull {
+    display: none;
+  }
+  .player{
+    padding-top: 50%;
+    display: block;
+    display: flex;
+    z-index: 1;
+  }
+  .game-container{
+    height: 0vw;
+    width: 75%;
+    margin: auto;
+  }
+  .board {
+    flex-direction: column;
+  }
+  .cell{
+    height: 25vw;
   }
   .surButton{
     font-size: 3vw;

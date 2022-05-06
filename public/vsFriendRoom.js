@@ -104,19 +104,34 @@ function roomPlayer(snapshot){
 }
 
 function showPlayer(){
-    // Show Player X Name
     $('#player1name').html('Player X : '+playerXname);
+    $('#player2name').html('Player O : '+playerOname);
+
+    /* No Responsive */
+    // Show Player X Name
     $('#charXName').html(playerXcharType);
     $('#charXHP').html('HP : '+playerXHP);
     $('#charXDamage').html('Damage : '+playerXdamage);
     document.getElementById("imageX").src = playerXimgSource;
 
     // Show Player O Name
-    $('#player2name').html('Player O : '+playerOname);
     $('#charOName').html(playerOcharType);
     $('#charOHP').html('HP : '+playerOHP);
     $('#charODamage').html('Damage : '+playerOdamage);
     document.getElementById("imageO").src = playerOimgSource;
+
+    /* For Resposive */
+    // Show Player Stat
+    $('#charXNameRes').html(playerXcharType);
+    $('#charXHPRes').html('HP : '+playerXHP);
+    $('#charXDamageRes').html('Damage : '+playerXdamage);
+    $('#imageXRes').attr("src", playerXimgSource);
+
+    // Show Bot Stat
+    $('#charONameRes').html(playerOcharType);
+    $('#charOHPRes').html('HP : '+playerOHP);
+    $('#charODamageRes').html('Damage : '+playerOdamage);
+    $('#imageORes').attr("src", playerOimgSource);
 }
 
 

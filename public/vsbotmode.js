@@ -91,7 +91,7 @@ function showStat(snapshot){
   }
 
   if(playerCharType != null && botCharType != null){
-    document.getElementById('surrender').style.display = 'visible';
+    document.getElementById('surrender').style.visibility = 'visible';
   }
   
   console.log('Player X : '+playerName);
@@ -110,8 +110,10 @@ function showStat(snapshot){
 }
 
 function showInfo(){
-  // Show Player Stat
   $('#player1name').html('Player X : '+playerName);
+
+  // No Responsive
+  // Show Player Stat
   $('#charXName').html(playerCharType);
   $('#charXHP').html('HP : '+playerHP);
   $('#charXDamage').html('Damage : '+playerDamage);
@@ -122,6 +124,19 @@ function showInfo(){
   $('#charOHP').html('HP : '+botHP);
   $('#charODamage').html('Damage : '+botDamage);
   $('#imageO').attr("src", botImgSource);
+
+  /* For Resposive */
+  // Show Player Stat
+  $('#charXNameRes').html(playerCharType);
+  $('#charXHPRes').html('HP : '+playerHP);
+  $('#charXDamageRes').html('Damage : '+playerDamage);
+  $('#imageXRes').attr("src", playerImgSource);
+
+  // Show Bot Stat
+  $('#charONameRes').html(botCharType);
+  $('#charOHPRes').html('HP : '+botHP);
+  $('#charODamageRes').html('Damage : '+botDamage);
+  $('#imageORes').attr("src", botImgSource);
 }
 
 let intervalID;

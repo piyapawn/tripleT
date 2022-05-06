@@ -51,8 +51,12 @@ let intervalID;
 let timeCountdown;
 
 function roomPlayer(snapshot){
+    const currentUser = firebase.auth().currentUser;
+    const currentUid = currentUser.uid;
+
     //console.log(snapshot.child("room-"+roomCode).exists());
     if(snapshot.child("room-"+roomCode).exists() == false){
+        refUserInfo.child(currentUid).child('room-friend').remove();
         window.location.replace("index.html", "_self");
     }
     // Get Room Info
@@ -416,7 +420,6 @@ function endMatchGame(theWinner){
     }
     else{
         refVSFriendRoom.child('room-'+roomCode).remove();
-        refUserInfo.child(currentUid).child('room-friend').remove();
         //window.open("index.html", "_self");
         clearInterval(intervalIDgameMatch);
         return
