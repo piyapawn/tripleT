@@ -1,6 +1,7 @@
 body{
   background-color: black;
-  background-image: url('/public/image/bg.jpg');
+  background-image: url('image/bg.jpg');
+  background-attachment: fixed;
 }
 .container{
   display: flex;
@@ -34,6 +35,7 @@ body{
   border-radius: 50px 20px;
 }
 #message{
+  background-color: #000000;
   margin: 0% auto 10% auto;
   padding: 50px 100px 50px 100px;
   border: solid 10px #00FFF6;
@@ -274,4 +276,64 @@ body{
 .surButton:hover{
   box-shadow: 0 0 50px 100px #ff1717ec inset;
   color: #ffffff !important;
+}
+
+#resmode{
+  display: none;
+}
+/*--- Responsive ---*/
+@media screen and (max-width: 1200px) {
+  .char{
+    padding-top: 20px;
+    margin-top: 30px;
+    font-weight: bolder;
+    color: white;
+    background-color: black;
+    height: 20vw;
+    width: 60vw;
+    border-radius: 20px;
+    border: solid 10px white;
+    box-shadow: 0 0 5px 10px #00FFF6 inset;
+    transition: 0.1s;
+    overflow: hidden;
+    flex-direction: row;
+  }
+  .charstatus{
+    width: 100%;
+    flex-direction: column;
+    display: flex;
+  }
+  .detail{
+    font-size: 1vw;
+  }
+
+  .nonresmode{
+    display: none;
+  }
+  #resmode{
+    display: block;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+  .gamemode{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .play{
+    margin-top: 30px;
+    font-weight: bolder;
+    color: white;
+    background-color: black;
+    height: 25vw;
+    width: 60vw;
+    border-radius: 20px;
+    border: solid 10px white;
+    box-shadow: 0 0 5px 10px #00FFF6 inset;
+    transition: 0.1s;
+  }
+  .modetext{
+    font-size: 5vw;
+  }
 }
