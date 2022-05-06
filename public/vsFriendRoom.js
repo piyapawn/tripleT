@@ -1,31 +1,26 @@
-// ref vanriable
-const refGameInfo = firebase.database().ref('GameInfo')
 const refUserInfo = firebase.database().ref('UserInfo')
 const refRoom = firebase.database().ref('Room')
+const refVSFriendRoom = firebase.database().ref('VSFriendRoom')
 
 refUserInfo.once('value', snapshot => {
-    userRoom(snapshot);
+    getRoomCode(snapshot);
 })
 
-let playerRoomNum;
-let charType;
-let health;
-let damage;
+let roomCode;
 
-function userRoom(snapshot){
+function getRoomCode(snapshot){
     const currentUser = firebase.auth().currentUser;
     const currentUid = currentUser.uid;
 
-    playerRoomNum = snapshot.child(currentUid).child('room').val();
+    roomCode = snapshot.child(currentUid).child('room-friend').val();
 
-    console.log('Player Room Num: '+playerRoomNum)
+    $('#roomCode').html(roomCode+`<span class="copyText" id="copy">Copy</span>`)
 }
 
-refRoom.on('value', snapshot => {
+refVSFriendRoom.on('value', snapshot => {
     roomPlayer(snapshot); 
 })
 
-let roomNum;
 let playerXInfo;
 let playerOInfo;
 
@@ -42,26 +37,12 @@ let playerOdamage;
 let playerOimgSource;
 
 function roomPlayer(snapshot){
+    const currentUser = firebase.auth().currentUser;
+    const currentUid = currentUser.uid;
 
-    snapshot.forEach((data) => {
-        const gameInfos = data.val();
-        //console.log('Game Infos: '+gameInfos);
-        Object.keys(gameInfos).forEach(key => {
-            switch(key){
-                case 'roomNum':
-                    if(gameInfos[key] == playerRoomNum){
-                        roomNum = gameInfos[key];
-                    }
-                    break
-            }
-        })
-    })
-
-    playerXInfo = snapshot.child("room-"+playerRoomNum).child("playerX").val();
+    playerXInfo = snapshot.child('room-'+roomCode).child("playerX-stat").val();
     // เช็คว่า child playerX มีอยู่ไหม ถ้ามีให้...
-    console.log('Room Check: '+playerRoomNum);
-    console.log('Room PlayerX: '+snapshot.child("room-"+playerRoomNum).child("playerX").exists());
-    if(snapshot.child("room-"+playerRoomNum).child("playerX").exists()){
+    if(snapshot.child('room-'+roomCode).child("playerX-stat").exists()){
         Object.keys(playerXInfo).forEach(key => {
             switch(key){
                 case 'name':
@@ -88,11 +69,10 @@ function roomPlayer(snapshot){
         playerXHP = '?'
         playerXdamage = '?'
     }
-    
-    playerOInfo = snapshot.child("room-"+playerRoomNum).child("playerO").val();
-    // เช็คว่า child playerO มีอยู่ไหม ถ้ามีให้...
-    console.log('Room PlayerO: '+snapshot.child("room-"+playerRoomNum).child("playerO").exists());
-    if(snapshot.child("room-"+playerRoomNum).child("playerO").exists()){
+
+    playerOInfo = snapshot.child('room-'+roomCode).child("playerO-stat").val();
+    // เช็คว่า child playerX มีอยู่ไหม ถ้ามีให้...
+    if(snapshot.child('room-'+roomCode).child("playerO-stat").exists()){
         Object.keys(playerOInfo).forEach(key => {
             switch(key){
                 case 'name':
@@ -120,20 +100,10 @@ function roomPlayer(snapshot){
         playerOdamage = '?'
     }
 
-    console.log('PlayerX_RoomNum: '+playerXInfo);
-    console.log('PlayerO_RoomNum: '+playerOInfo);
-
-    //console.log('PlayerX_RoomNum: '+playerXInfo);
-    //console.log('PlayerO_RoomNum: '+playerOInfo);
-
     showPlayer();
-
 }
 
 function showPlayer(){
-    // Show Room Number
-    $('#roomNum').html(playerRoomNum);
-
     // Show Player X Name
     $('#player1name').html('Player X : '+playerXname);
     $('#charXName').html(playerXcharType);
@@ -149,15 +119,33 @@ function showPlayer(){
     document.getElementById("imageO").src = playerOimgSource;
 }
 
-function deletePlayerRoom(){
-    const currentUser = firebase.auth().currentUser;
-    const currentUid = currentUser.uid;
 
-    refUserInfo.child(currentUid).child('room').remove();
+
+/* ----- Copy Room Code ----- */
+
+const roomCodeEvent = document.getElementById('roomCode');
+roomCodeEvent.addEventListener('mouseover', hoverCopy);
+roomCodeEvent.addEventListener('mouseout', notHoverCopy);
+roomCodeEvent.addEventListener('click', clickCopy);
+
+function hoverCopy(){
+    document.getElementById('copy').style.visibility = 'visible';
+	document.getElementById('copy').innerHTML = 'Copy';
 }
 
-function deletePlayerQuantity(){
-    refGameInfo.child('RoomStatus').child('room-'+playerRoomNum+'playerQuantity').remove();
+function notHoverCopy(){
+    document.getElementById('copy').style.visibility = 'hidden';
 }
 
-//export default playerRoomNum;
+function clickCopy(){
+	let click = document.getElementById('copy');
+    if(click.innerHTML == 'Copy'){
+    	click.innerHTML = 'Copied';
+    }
+
+    var copyText = document.getElementById('roomCode').innerHTML;
+    let roomCodeCopy = copyText.slice(0, 4);
+
+    /* Copy the text inside the text field */
+    navigator.clipboard.writeText(roomCodeCopy);
+}

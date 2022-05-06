@@ -11,14 +11,10 @@ refGameInfo.on('value', snapshot => {
 
 refUserInfo.on('value', snapshot => {
     const currentUser = firebase.auth().currentUser;
-    const currentEmail = currentUser.email;
     const currentUid = currentUser.uid;
-    let adIndex = currentEmail.indexOf("@");
-    let currentPlayer = currentEmail.slice(0, adIndex);
-    let current_User = currentPlayer.replace('.', '_');
 
-    console.log('Child not Exist?: '+snapshot.child(current_User).child(current_User+'-room').exists());
-    console.log('Child Exist?: '+snapshot.child(current_User).child(current_User+'-room').exists() == false);
+    console.log('Child not Exist?: '+snapshot.child(currentUid).child('room').exists());
+    console.log('Child Exist?: '+snapshot.child(currentUid).child('room').exists() == false);
 })
 
 let roomQuantity = 0;
@@ -60,9 +56,6 @@ let playerQuantity;
 
 /* Room */
 refRoom.on('value', snapshot => {
-    //console.log('Room Quantity: '+roomQuantity);
-    //console.log('playerQuantitySnapshot: '+snapshot.child('room-'+roomNum).numChildren());
-    //console.log('playerQuantity: '+playerQuantity);
     refGameInfo.child('RoomStatus').update({
         ['RoomQuantity']: snapshot.numChildren(),
     });
@@ -137,10 +130,10 @@ function setModalText(){
         createOrJoin.innerHTML = 'Create Room . . .';
     }
     else{
-        if(playerQuantity == 2){
+        if(playerQuantity-6 == 2){
             createOrJoin.innerHTML = 'Create Room . . .';            
         }
-        else if(playerQuantity == 1){
+        else if(playerQuantity-6 == 1){
             createOrJoin.innerHTML = 'Join room . . .';
         }
         else{
@@ -154,7 +147,6 @@ function playerX_CreateRoom(charType, hp, damage, imgSource){
     // User ที่ใช้งานในขณะนั้น
     const currentUser = firebase.auth().currentUser;
     const currentEmail = currentUser.email;
-    const currentUid = currentUser.uid;
     let adIndex = currentEmail.indexOf("@");
     let currentPlayer = currentEmail.slice(0, adIndex);
 
@@ -183,7 +175,6 @@ function playerO_Join(charType, hp, damage, imgSource){
     // User ที่ใช้งานในขณะนั้น
     const currentUser = firebase.auth().currentUser;
     const currentEmail = currentUser.email;
-    const currentUid = currentUser.uid;
     let adIndex = currentEmail.indexOf("@");
     let currentPlayer = currentEmail.slice(0, adIndex);
 
@@ -204,11 +195,7 @@ function playerO_Join(charType, hp, damage, imgSource){
 
 function userRoom(){
     const currentUser = firebase.auth().currentUser;
-    const currentEmail = currentUser.email;
     const currentUid = currentUser.uid;
-    let adIndex = currentEmail.indexOf("@");
-    let currentPlayer = currentEmail.slice(0, adIndex);
-    let current_User = currentPlayer.replace('.', '_');
 
     console.log('Fuck');
 
@@ -216,12 +203,12 @@ function userRoom(){
         console.log('Fuck You');
         if(currentUser){
             console.log('Fuck You Bitch');
-            //console.log('Child Exist?: '+snapshot.child(current_User).child(current_User+'-room').exists())
-            if(snapshot.child(current_User).child(current_User+'-room').exists() == false){
+            // เช็คว่ามี child room อยู่ในผู้เล่นนั้นๆไหม ถ้าไม่มีให้
+            if(snapshot.child(currentUid).child('room').exists() == false){
                 console.log('Fuck You Bitch Boy');
-                //console.lof('Room Exist: '+snapshot.child(current_User).child(current_User+'-room').exists());
-                refUserInfo.child(current_User).update({
-                    [current_User+'-room']: lastestRoomNum,
+                // สร้าง child room
+                refUserInfo.child(currentUid).update({
+                    ['room']: lastestRoomNum,
                 });
             }
         }

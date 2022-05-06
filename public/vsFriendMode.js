@@ -4,22 +4,23 @@
 const refGameInfo = firebase.database().ref('GameInfo')
 const refUserInfo = firebase.database().ref('UserInfo')
 const refRoom = firebase.database().ref('Room')
+const refVSFriendRoom = firebase.database().ref('VSFriendRoom')
 
 refUserInfo.once('value', snapshot => {
-  userRoom(snapshot);
+    getRoomCode(snapshot);
 })
 
-let playerRoomNum;
+let roomCode;
 
-function userRoom(snapshot){
+function getRoomCode(snapshot){
     const currentUser = firebase.auth().currentUser;
     const currentUid = currentUser.uid;
 
-    playerRoomNum = snapshot.child(currentUid).child('room').val();
+    roomCode = snapshot.child(currentUid).child('room-friend').val();
 }
 
-refRoom.on('value', snapshot => {
-    getRoomInfo(snapshot);
+refVSFriendRoom.on('value', snapshot => {
+    roomPlayer(snapshot); 
 })
 
 // variable declartion
@@ -49,14 +50,13 @@ let loser;
 let intervalID;
 let timeCountdown;
 
-function getRoomInfo(snapshot){
-    console.log(snapshot.child("room-"+playerRoomNum).exists());
-    if(snapshot.child("room-"+playerRoomNum).exists() == false){
+function roomPlayer(snapshot){
+    //console.log(snapshot.child("room-"+roomCode).exists());
+    if(snapshot.child("room-"+roomCode).exists() == false){
         window.location.replace("index.html", "_self");
-        console.log('Back to Homepage')
     }
     // Get Room Info
-    const roomInfos = snapshot.child('room-'+playerRoomNum).val();
+    const roomInfos = snapshot.child('room-'+roomCode).val();
     Object.keys(roomInfos).forEach(key => {
         switch(key){
             case 'turn':
@@ -74,8 +74,9 @@ function getRoomInfo(snapshot){
         }
     })
 
-    playerXInfo = snapshot.child("room-"+playerRoomNum).child("playerX").val();
-    if(snapshot.child("room-"+playerRoomNum).child("playerX").exists()){
+    playerXInfo = snapshot.child('room-'+roomCode).child("playerX-stat").val();
+    // เช็คว่า child playerX มีอยู่ไหม ถ้ามีให้...
+    if(snapshot.child('room-'+roomCode).child("playerX-stat").exists()){
         Object.keys(playerXInfo).forEach(key => {
             switch(key){
                 case 'name':
@@ -93,8 +94,10 @@ function getRoomInfo(snapshot){
             }
         })
     }
-    playerOInfo = snapshot.child("room-"+playerRoomNum).child("playerO").val();
-    if(snapshot.child("room-"+playerRoomNum).child("playerO").exists()){
+
+    playerOInfo = snapshot.child('room-'+roomCode).child("playerO-stat").val();
+    // เช็คว่า child playerX มีอยู่ไหม ถ้ามีให้...
+    if(snapshot.child('room-'+roomCode).child("playerO-stat").exists()){
         Object.keys(playerOInfo).forEach(key => {
             switch(key){
                 case 'name':
@@ -140,7 +143,6 @@ function getRoomInfo(snapshot){
         }
     }
 }
-
 
 const cells = document.querySelectorAll('.cell');
 cells.forEach(cell => cell.addEventListener('click', gamePlay));
@@ -190,13 +192,9 @@ function gamePlay(event) {
 // check for win conditions
 // parameter: array of played fields
 function checkWinRound() {
-    refRoom.child('room-'+playerRoomNum).once("value", snapshot => {
-        const winPlayerX = snapshot.child('playerX').child('win').val();
-        const winPlayerO = snapshot.child('playerO').child('win').val();
-
-        console.log('Player X Win: '+winPlayerX);
-        console.log('Player O Win: '+winPlayerO);
-        console.log('Win Match Check: '+winMatchCheck)
+    refVSFriendRoom.child('room-'+roomCode).once("value", snapshot => {
+        const winPlayerX = snapshot.child('playerX-stat').child('win').val();
+        const winPlayerO = snapshot.child('playerO-stat').child('win').val();
 
         // Check ว่าใน Match นั้นมีใครชนะหรือยัง
         if(winMatchCheck || playRound == 10){
@@ -292,9 +290,8 @@ const leave = document.getElementById('leaveRoom');
 leave.addEventListener('click', leaveRoom);
 
 function leaveRoom(){
-    refRoom.child('room-'+playerRoomNum).remove();
-    refUserInfo.child(currentUid).child('room').remove();
-    refGameInfo.child('RoomStatus').child('room-'+playerRoomNum+'playerQuantity').remove();
+    refVSFriendRoom.child('room-'+roomCode).remove();
+    refUserInfo.child(currentUid).child('room-friend').remove();
     window.location.replace("index.html", "_self");
 }
 
@@ -322,21 +319,21 @@ function resetGameRound(){
 
 // สลับเทิร์นผู้เล่น
 function switchTurn(turn){
-    refRoom.child('room-'+playerRoomNum).update({
+    refVSFriendRoom.child('room-'+roomCode).update({
         ['turn']: turn,
     });
 }
 
 // เพิ่มเลขรอบ
 function updateRound(){
-    refRoom.child('room-'+playerRoomNum).update({
+    refVSFriendRoom.child('room-'+roomCode).update({
         ['round']: playRound+1,
     });
 }
 
 // อัปเดตตาราง
 function updateTable(id){
-    refRoom.child("room-"+playerRoomNum).child("table").update({
+    refVSFriendRoom.child("room-"+roomCode).child("table").update({
         [id]: playerTurn,
     })
 }
@@ -352,7 +349,7 @@ function attackEnemies(damage, winner){
         else{
             playerOHP = playerOHP - damage;
         }
-        refRoom.child('room-'+playerRoomNum).child('playerO').update({
+        refVSFriendRoom.child('room-'+roomCode).child('playerO-stat').update({
             ['hp']: playerOHP,
         })
     }
@@ -365,7 +362,7 @@ function attackEnemies(damage, winner){
         else{
             playerXHP = playerXHP - damage;
         }
-        refRoom.child('room-'+playerRoomNum).child('playerX').update({
+        refVSFriendRoom.child('room-'+roomCode).child('playerX-stat').update({
             ['hp']: playerXHP,
         })
     }
@@ -373,7 +370,7 @@ function attackEnemies(damage, winner){
 
 // Reset ตาราง
 function resetTable(){
-    refRoom.child('room-'+playerRoomNum).update({
+    refVSFriendRoom.child('room-'+roomCode).update({
         ['table']: '',
     });
 
@@ -384,20 +381,20 @@ function resetTable(){
 
 // อัปเดตรอบนั้นว่า ชนะ หรือ แพ้
 function updateWinRound(bool){
-    refRoom.child("room-"+playerRoomNum).update({
+    refVSFriendRoom.child("room-"+roomCode).update({
         ['winRound']: bool,
     })
 }
 
 // อัปเดตตานั้นว่า ชนะ หรือ แพ้
 function updateWinMatch(bool){
-    refRoom.child("room-"+playerRoomNum).update({
+    refVSFriendRoom.child("room-"+roomCode).update({
         ['winMatch']: bool,
     })
 }
 
 function updateTheWinner(bool, theWinner){
-    refRoom.child("room-"+playerRoomNum).child('player'+theWinner).update({
+    refVSFriendRoom.child("room-"+roomCode).child('player'+theWinner+'-stat').update({
         ['win']: bool,
     })
 }
@@ -418,9 +415,8 @@ function endMatchGame(theWinner){
         timeCountdownEndGame--;
     }
     else{
-        refRoom.child('room-'+playerRoomNum).remove();
-        refUserInfo.child(currentUid).child('room').remove();
-        refGameInfo.child('RoomStatus').child('room-'+playerRoomNum+'playerQuantity').remove();
+        refVSFriendRoom.child('room-'+roomCode).remove();
+        refUserInfo.child(currentUid).child('room-friend').remove();
         //window.open("index.html", "_self");
         clearInterval(intervalIDgameMatch);
         return

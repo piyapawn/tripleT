@@ -1,6 +1,7 @@
 /*ForGameBoard*/
 body{
   background-color: rgb(0, 0, 0);
+  background-image: url('/public/image/bg.jpg');
 }
 .header{
   padding: 10px;
@@ -37,9 +38,22 @@ body{
   padding: 10px 50px 10px 50px;
 }
 /*--- Surrender Button ---*/
-.surrender{
+.surrender, .leaveRoom, .roomCode{
   color: white;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.surButton{
+  visibility: hidden;
+}
+.roomCodeText{
+  background-color: transparent;
+  border: none;
+}
+.leaveButton{
+  visibility: visible;
 }
 .surButton{
   font-size: 1vw;
@@ -53,9 +67,55 @@ body{
   box-shadow: 0 0 5px 5px #ff0000 inset;
   transition: 0.25s;
 }
+.roomCode{
+  margin: 0;
+  font-size: 1vw;
+  font-weight: bolder;
+  color: rgb(200, 200, 255);
+  background-color: black;
+  height: 5vw;
+  width: 12vw;
+  border-radius: 10pt;
+  border: solid 2px white;
+  box-shadow: 0 0 5px 5px blue inset;
+  transition: 0.25s;
+}
+.roomCodeNum{
+  margin: 0px 5px;
+  cursor: copy;
+}
+.copyText {
+  margin-left: 10px;
+  visibility: hidden;
+  background-color: white;
+  color: black;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+.leaveButton{
+  font-size: 1vw;
+  font-weight: bolder;
+  color: white;
+  background-color: black;
+  height: 5vw;
+  width: 12vw;
+  border-radius: 10pt;
+  border: solid 2px white;
+  box-shadow: 0 0 5px 5px white inset;
+  transition: 0.25s;
+}
 .surButton:hover{
   box-shadow: 0 0 50px 100px #ff1717ec inset;
   color: #ffffff;
+}
+.leaveButton:hover{
+  box-shadow: 0 0 50px 100px #ffffffec inset;
+  color: #000000;
 }
 /* Re-Match Button*/
 .reMatchButton{

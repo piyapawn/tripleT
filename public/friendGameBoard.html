@@ -47,6 +47,10 @@
         <div class="surrender">
           <button type="click" class="surButton" id="surrender">surrender</button>
         </div>
+        <div class="roomCode">
+            <div type="click" class="roomCodeText">Room Code : </div>
+            <p class="roomCodeNum" id="roomCode"> <span class="copyText" id="copy">Copy</span></p>
+        </div>
         <div class="leaveRoom">
           <button type="click" class="leaveButton" id="leaveRoom">Leave</button>
         </div>
@@ -112,8 +116,8 @@
       // For Firebase JS SDK v7.20.0 and later, measurementId is optional
       firebase.initializeApp(firebaseConfig);
     </script>
-    <script type="module" src="vsOtherRoom.js"></script>
-    <script type="module" src="vsOtherMode.js"></script>
+    <script type="module" src="vsFriendMode.js"></script>
+    <script type="module" src="vsFriendRoom.js"></script>
     <script type="text/javascript" src="setupUI.js"></script>
   </body>
   <link rel="stylesheet" href="game.css">

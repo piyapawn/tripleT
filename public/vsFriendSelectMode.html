@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Triple T Select Character</title>
+    <title>Triple T VS Friend Mode</title>
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
@@ -26,9 +26,6 @@
       <div class="gameModeShow">
         <p id="gameModeText" class="gameModeText">Mode : </p>
       </div>
-      <div id="createOrJoinFriend" class="createOrJoinFriend">
-        <p id="createOrJoinText" class="createOrJoinText"></p>
-      </div>
       <div id="user-profile-name" class="display-name userEmailName flex-end" style="color: white">Player : </div>
     </div>
 
@@ -36,30 +33,20 @@
     <div class="container">
       <div class="signInSite">
         <div id="message">
-          <h2 id="head-mes">Select Character</h2>
+          <h2 id="head-mes">Select Create or Join</h2>
         </div>
       </div>
     </div>
 
-    <!--CharacterSelect-->
-    <div id="hero" class="charchoose">
-        <button id="golem" type="click" class="char">
-            <img src="image/golem.png" width="200px" height="200px">
-            <p class="charText">Golem</p>
-            <p class="charStat">HP : 13</p>
-            <p class="charStat">Damage : 3</p>
+    <!-- ModeSelect -->
+    <div id="mode" class="gamemode">
+        <button id="createRoom" type="click" class="vsFriendPlay logged-in">
+          <p class="modetext">Create</p>
+          <p class="modetext">Room</p>
         </button>
-        <button id="orc" type="click" class="char">
-          <img src="image/orc.png" width="200px" height="200px">
-          <p class="charText">Orc</p>
-          <p class="charStat">HP : 8</p>
-          <p class="charStat">Damage : 6</p>
-        </button>
-        <button id="reaper" type="click" class="char">
-          <img src="image/reaper.png" width="200px" height="200px">
-          <p class="charText">Reaper</p>
-          <p class="charStat">HP : 5</p>
-          <p class="charStat">Damage : 8</p>
+        <button id="joinRoom" type="click" class="vsFriendPlay logged-in">
+          <p class="modetext">Join</p>
+          <p class="modetext">Room</p>
         </button>
     </div>
 
@@ -82,26 +69,6 @@
       </div>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade bd-example-modal-sm" id="roomCodeModal" role="dialog">
-      <div class="modal-dialog modal-sm">
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close cancelButton" data-dismiss="modal">&times;</button>
-            <h4 id="createOrJoin" class="modal-title">Room Code :</h4>
-          </div>
-          <div class="modal-body">
-            <input type="text" class="form-control" id="roomCode" value="">
-          </div>
-          <div class="modal-footer">
-            <button type="click" class="btn btn-success" id="submitButton" data-dismiss="modal">Submit</button>
-            <button type="button" class="btn btn-danger cancelButton" data-dismiss="modal">Cancel</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <script>
       // For Firebase JS SDK v7.20.0 and later, measurementId is optional
       const firebaseConfig = {
@@ -117,8 +84,7 @@
       // For Firebase JS SDK v7.20.0 and later, measurementId is optional
       firebase.initializeApp(firebaseConfig);
     </script>
-    <script type="module" src="roomMatching.js"></script>
-    <script type="module" src="forChooseHero.js"></script>
+    <script type="module" src="vsFriendSelect.js"></script>
     <script type="text/javascript" src="setupUI.js"></script>
   </body>
   <link rel="stylesheet" href="signIn&mainMenu.css">

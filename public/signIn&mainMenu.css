@@ -1,5 +1,6 @@
 body{
   background-color: black;
+  background-image: url('/public/image/bg.jpg');
 }
 .container{
   display: flex;
@@ -85,7 +86,7 @@ body{
   margin-left: 20%;
   margin-right: 20%;
 }
-.play, .char{
+.play, .char, .vsFriendPlay{
   margin-top: 30px;
   font-weight: bolder;
   color: white;
@@ -97,7 +98,7 @@ body{
   box-shadow: 0 0 5px 10px #00FFF6 inset;
   transition: 0.1s;
 }
-.play:hover, .char:hover{
+.play:hover, .char:hover, .vsFriendPlay:hover{
   box-shadow: 0 0 30px 15px #00FFF6 inset;
 }
 .modetext{

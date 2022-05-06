@@ -39,14 +39,10 @@ let botWin;
 
 function showStat(snapshot){
   const currentUser = firebase.auth().currentUser;
-  const currentEmail = currentUser.email;
   const currentUid = currentUser.uid;
-  let adIndex = currentEmail.indexOf("@");
-  let currentPlayer = currentEmail.slice(0, adIndex);
-  let current_User = currentPlayer.replace('.', '_');
 
-  const userInfos = snapshot.child(current_User).child('user-stat').val();
-  if(snapshot.child(current_User).child('user-stat').exists()){
+  const userInfos = snapshot.child(currentUid).child('user-stat').val();
+  if(snapshot.child(currentUid).child('user-stat').exists()){
     Object.keys(userInfos).forEach(key => {
       switch(key){
         case 'name':
@@ -71,8 +67,8 @@ function showStat(snapshot){
     })
   }
 
-  const botInfos = snapshot.child(current_User).child('bot-stat').val();
-  if(snapshot.child(current_User).child('bot-stat').exists()){
+  const botInfos = snapshot.child(currentUid).child('bot-stat').val();
+  if(snapshot.child(currentUid).child('bot-stat').exists()){
     Object.keys(botInfos).forEach(key => {
       switch(key){
         case 'char-type':
@@ -92,6 +88,10 @@ function showStat(snapshot){
           break
       }
     })
+  }
+
+  if(playerCharType != null && botCharType != null){
+    document.getElementById('surrender').style.display = 'visible';
   }
   
   console.log('Player X : '+playerName);
@@ -300,11 +300,7 @@ let intervalIDRound;
 
 function attackEnemies(winner, damage){
   const currentUser = firebase.auth().currentUser;
-  const currentEmail = currentUser.email;
   const currentUid = currentUser.uid;
-  let adIndex = currentEmail.indexOf("@");
-  let currentPlayer = currentEmail.slice(0, adIndex);
-  let current_User = currentPlayer.replace('.', '_');
 
   console.log('Attack Function');
 
@@ -322,7 +318,7 @@ function attackEnemies(winner, damage){
       timeCountdownRound = 3;
       intervalIDRound = setInterval(gameRoundReset, 1000, winner)
     }
-    refUserInfo.child(current_User).child('bot-stat').update({
+    refUserInfo.child(currentUid).child('bot-stat').update({
         ['hp']: botHP,
     })
   }
@@ -336,7 +332,7 @@ function attackEnemies(winner, damage){
       timeCountdownRound = 3;
       intervalIDRound = setInterval(gameRoundReset, 1000, winner)
     }
-    refUserInfo.child(current_User).child('user-stat').update({
+    refUserInfo.child(currentUid).child('user-stat').update({
         ['hp']: playerHP,
     })
   }
@@ -407,11 +403,7 @@ function gameMatchWin(){
 
 function endMatchGame(theWinner){
     const currentUser = firebase.auth().currentUser;
-    const currentEmail = currentUser.email;
     const currentUid = currentUser.uid;
-    let adIndex = currentEmail.indexOf("@");
-    let currentPlayer = currentEmail.slice(0, adIndex);
-    let current_User = currentPlayer.replace('.', '_');
 
     if(timeCountdownEndGame >= 0){
         document.getElementById("timeCountdownText").style.visibility = 'visible';
@@ -425,8 +417,8 @@ function endMatchGame(theWinner){
         timeCountdownEndGame--;
     }
     else{
-        refUserInfo.child(current_User).child('user-stat').remove();
-        refUserInfo.child(current_User).child('bot-stat').remove();
+        refUserInfo.child(currentUid).child('user-stat').remove();
+        refUserInfo.child(currentUid).child('bot-stat').remove();
         window.location.replace('index.html');
         clearInterval(intervalIDgameMatch);
         return
@@ -446,15 +438,11 @@ function gameMatchReset(){
 
 function surrenderGame(){
     const currentUser = firebase.auth().currentUser;
-    const currentEmail = currentUser.email;
     const currentUid = currentUser.uid;
-    let adIndex = currentEmail.indexOf("@");
-    let currentPlayer = currentEmail.slice(0, adIndex);
-    let current_User = currentPlayer.replace('.', '_');
     alert('Bot Win!');
 
-    refUserInfo.child(current_User).child('user-stat').remove();
-    refUserInfo.child(current_User).child('bot-stat').remove();
+    refUserInfo.child(currentUid).child('user-stat').remove();
+    refUserInfo.child(currentUid).child('bot-stat').remove();
 
     window.location.replace('index.html');
 }
