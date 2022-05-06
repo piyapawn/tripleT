@@ -27,7 +27,7 @@
   </head>
   <body class="game">
     <div class="header">
-      <button id="hint" class="hint logged-out" type="click">Hint</button>
+      <button id="hint" class="hint logged-in" type="click">Hint</button>
       <div class="flex-end" id="flex-end">
         <div id="user-profile-name" class="display-name userEmailName" style="color: white">Player : </div>
         <button id="signout-google" type="click" class="signOutButton">
@@ -43,7 +43,7 @@
         <div id="message">
           <h2 id="head-mes">Triple T</h2>
         </div>
-        <button id="signin-google" type="click" class="signInButton logged-in">
+        <button id="signin-google" type="click" class="signInButton logged-out">
           Sign In
         </button>
       </div>
@@ -52,17 +52,17 @@
     <!-- ModeSelect -->
     <div class="nonresmode">
       <div id="mode" class="gamemode">
-        <button id="mode1" type="click" class="play logged-out">
+        <button id="mode1" type="click" class="play logged-in">
           <p class="modetext">Solo</p>
           <p class="modetext">VS</p>
           <p class="modetext">Bot</p>
         </button>
-        <button id="mode2" type="click" class="play logged-out">
+        <button id="mode2" type="click" class="play logged-in">
           <p class="modetext">Play</p>
           <p class="modetext">With</p>
           <p class="modetext">Other</p>
         </button>
-        <button id="mode3" type="click" class="play logged-out">
+        <button id="mode3" type="click" class="play logged-in">
           <p class="modetext">Play</p>
           <p class="modetext">With</p>
           <p class="modetext">Friend</p>
@@ -99,13 +99,13 @@
     <!-- ModeSelect For Responsive-->
     <div id="resmode">
       <div id="mode" class="gamemode">
-        <button id="mode1" type="click" class="play logged-out">
+        <button id="mode1" type="click" class="play logged-in">
           <p class="modetext">Solo VS Bot</p>
         </button>
-        <button id="mode2" type="click" class="play logged-out">
+        <button id="mode2" type="click" class="play logged-in">
           <p class="modetext">Play With Other</p>
         </button>
-        <button id="mode3" type="click" class="play logged-out">
+        <button id="mode3" type="click" class="play logged-in">
           <p class="modetext">Play With Friend</p>
         </button>
       </div>
@@ -113,7 +113,7 @@
 
     <!--CharacterSelect-->
     <div class="surrender" id="giveup">
-      <button type="click" class="surButton logged-out">surrender</button>
+      <button type="click" class="surButton logged-in">surrender</button>
     </div>
     <script>
       // For Firebase JS SDK v7.20.0 and later, measurementId is optional
